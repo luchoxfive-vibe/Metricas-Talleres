@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#03051a"></rect><circle cx="100" cy="100" r="70" fill="none" stroke="#3d7bff" stroke-width="6" opacity="0.9"></circle><circle cx="100" cy="100" r="46" fill="none" stroke="#ff6e00" stroke-width="6"></circle><circle cx="100" cy="100" r="22" fill="#7b4ad6"></circle></svg>
+</template>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-afc59ef1-e589-4483-a811-dca9d824bbfa/styles.css">
+<script src="_ds/nocturne-afc59ef1-e589-4483-a811-dca9d824bbfa/_ds_bundle.js"></script>
+<script src="datos.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+  body { margin: 0; background: #03051a; color: #f4f6ff; }
+  a { color: #a9c3ff; text-decoration: none; }
+  a:hover { color: #ffffff; }
+  button:focus-visible { outline: 2px solid #a9c3ff; outline-offset: 3px; }
+  @keyframes flotarA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(8vw,6vh) scale(1.15); } }
+  @keyframes flotarB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-10vw,-8vh) scale(0.9); } }
+  @keyframes flotarC { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vw,-10vh) scale(1.2); } }
+  @keyframes ondas { 0% { transform: translate(-50%,-50%) scale(0.35); opacity: 0; } 25% { opacity: 0.9; } 100% { transform: translate(-50%,-50%) scale(1.35); opacity: 0; } }
+  @keyframes respirar { 0%,100% { opacity: 0.45; } 50% { opacity: 0.95; } }
+  @keyframes recorrer { from { top: -160px; } to { top: 100%; } }
+  @keyframes barrido { 0% { left: -45%; } 55%,100% { left: 120%; } }
+  @keyframes escudoVidrio { 0%,52%,100% { opacity: 1; filter: none; } 64%,86% { opacity: 0.16; filter: saturate(0) blur(0.3px); } }
+  @keyframes escudoCapa { 0%,52%,100% { opacity: 0; } 64%,86% { opacity: 1; } }
+  @keyframes escudoBrillo { 0%,58% { background-position: 160% 0; } 92%,100% { background-position: -60% 0; } }
+  @keyframes girar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes flotarIcono { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</helmet>
+
+{{ fondo }}
+
+<div style="position: fixed; bottom: 18px; right: 18px; z-index: 50; display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(10,14,40,0.55); border: 1px solid rgba(255,255,255,0.14); backdrop-filter: blur(18px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); font-family: var(--font-body);">
+  <sc-for list="{{ vistas }}" as="v" hint-placeholder-count="2">
+    <button onClick="{{ v.onClick }}" style="cursor: pointer; font-family: var(--font-body); font-size: 12px; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid {{ v.bc }}; background: {{ v.bg }}; color: {{ v.fg }}; transition: background 0.3s, border-color 0.3s;" style-hover="border-color: rgba(255,255,255,0.45)">{{ v.label }}</button>
+  </sc-for>
+</div>
+
+<div style="position: relative; z-index: 1; color: #f4f6ff; font-family: var(--font-body); min-height: 100vh; padding: 0 0 140px; box-sizing: border-box; overflow: hidden; width: {{ L.frameW }}; margin: {{ L.frameM }}; border-radius: {{ L.frameR }}; border: {{ L.frameB }}; background: {{ L.frameBg }};">
+
+  <div data-screen-label="Portada" style="position: relative; overflow: hidden; height: {{ L.heroH }};">
+    <div style="position: absolute; inset: 0;">{{ heroFx }}</div>
+    <div style="position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(90deg, rgba(3,5,26,0.22) 0px, rgba(255,255,255,0.03) 26px, rgba(3,5,26,0.22) 52px);"></div>
+    <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(3,5,26,0.4) 0%, rgba(3,5,26,0) 26%, rgba(3,5,26,0.2) 66%, #03051a 100%);"></div>
+    <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 50% at 20% 100%, rgba({{ A.rgb }},0.55), transparent 70%); transition: background 1.2s;"></div>
+    <div style="position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between; max-width: 1320px; margin: 0 auto; box-sizing: border-box; padding: {{ L.heroPad }};">
+      <div style="display: flex; align-items: center; justify-content: flex-end;">
+        {{ escudo }}
+      </div>
+      <div data-reveal="1" style="display: flex; flex-direction: column; gap: 18px; container-type: inline-size;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="display: block; width: 36px; height: 1px; background: {{ A.c }}; box-shadow: 0 0 12px {{ A.c }};"></span>
+          <span style="letter-spacing: 0.3em; text-transform: uppercase; color: #d6dbea; font-size: {{ L.kicker }};">Informe branding · 2026</span>
+        </div>
+        <h1 style="margin: 0; text-transform: uppercase; font-family: var(--font-heading); font-weight: 500; line-height: 0.86; letter-spacing: -0.045em; white-space: nowrap; color: #f4f6ff; text-shadow: 0 0 80px rgba({{ A.rgb }},0.7); font-size: {{ h1Size }};">{{ heroMes }}</h1>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; pointer-events: auto; margin-top: 6px;">
+          <sc-for list="{{ chipsMes }}" as="c" hint-placeholder-count="6">
+            <button onClick="{{ c.onClick }}" style="cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 10px 18px; border-radius: 999px; border: 1px solid {{ c.bc }}; background: {{ c.bg }}; color: {{ c.fg }}; box-shadow: {{ c.sh }}; backdrop-filter: blur(14px); transition: all 0.35s cubic-bezier(.2,.7,.2,1);" style-hover="border-color: rgba(255,255,255,0.5); transform: translateY(-2px)">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1320px; margin: 0 auto; box-sizing: border-box; padding: {{ L.pagePad }};">
+
+    <div data-reveal="1" style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 48px; margin-bottom: 22px;">
+      <div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #9aa3c0;">Elegí un recorrido</div>
+      <sc-if value="{{ sinSeleccion }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size: 13px; color: #9aa3c0; display: flex; align-items: center; gap: 8px;"><i class="ph ph-cursor-click" style="font-size: 16px;"></i>Diseño, Fotografía o Producción</div>
+      </sc-if>
+    </div>
+
+    <div data-screen-label="Recorridos" style="display: grid; gap: 18px; grid-template-columns: {{ L.tilesCols }};">
+      <sc-for list="{{ areaBtns }}" as="t" hint-placeholder-count="3">
+        <button data-reveal="1" onClick="{{ t.onClick }}" style="cursor: pointer; font-family: var(--font-body); text-align: left; position: relative; overflow: hidden; border-radius: 28px; color: #f4f6ff; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)); border: 1px solid {{ t.bd }}; box-shadow: {{ t.sh }}; backdrop-filter: blur(24px); transform: {{ t.lift }}; transition: transform 0.5s cubic-bezier(.2,.7,.2,1), box-shadow 0.5s, border-color 0.5s; height: {{ L.tileH }}; padding: {{ L.tilePad }};" style-hover="border-color: rgba(255,255,255,0.4)">
+          <span style="position: absolute; left: 10%; right: 10%; bottom: -30%; height: 70%; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba({{ t.rgb }},{{ t.glowO }}), transparent); filter: blur(10px); transition: opacity 0.5s;"></span>
+          <span style="position: absolute; left: 14%; right: 14%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, {{ t.c }}, transparent);"></span>
+          <span style="position: relative; display: flex; align-items: center; justify-content: center; border-radius: 26%; background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba({{ t.rgb }},0.18)); border: 1px solid rgba(255,255,255,0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -10px 24px rgba({{ t.rgb }},0.45), 0 14px 30px rgba(0,0,0,0.45); animation: {{ t.anim }}; width: {{ L.iconBox }}; height: {{ L.iconBox }};">
+            <i class="{{ t.icon }}" style="color: {{ t.c }}; filter: drop-shadow(0 0 12px {{ t.c }}); font-size: {{ L.iconF }};"></i>
+          </span>
+          <span style="position: relative; display: flex; flex-direction: column; gap: 8px;">
+            <span style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <span style="font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.02em; line-height: 1; font-size: {{ L.tileF }};">{{ t.label }}</span>
+              <i class="ph ph-arrow-up-right" style="font-size: 18px; color: {{ t.c }}; display: {{ L.tileSub }};"></i>
+            </span>
+            <span style="font-size: 13px; color: #9aa3c0; display: {{ L.tileSub }};">{{ t.sub }}</span>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ haySeleccion }}" hint-placeholder-val="{{ false }}">
+      <div data-reveal="1" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-top: 88px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }};">Recorrido</div>
+          <div style="font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.03em; line-height: 1; font-size: {{ L.recF }};">{{ recTitulo }}</div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button onClick="{{ salir }}" style="cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 13px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #f4f6ff; backdrop-filter: blur(16px); display: flex; align-items: center; gap: 8px; transition: all 0.3s;" style-hover="border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.12)">
+          <i class="ph ph-x" style="font-size: 16px;"></i>
+          <span>Salir del recorrido</span>
+        </button>
+        <button onClick="{{ toggleHistorico }}" style="cursor: pointer; font-family: var(--font-body); font-size: 15px; font-weight: 500; padding: 13px 22px; border-radius: 999px; border: 1px solid {{ histBd }}; background: {{ histBg }}; color: #f4f6ff; backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 30px rgba({{ A.rgb }},0.25); display: flex; align-items: center; gap: 10px; transition: all 0.35s;" style-hover="border-color: rgba(255,255,255,0.5); transform: translateY(-2px)">
+          <i class="ph ph-clock-counter-clockwise" style="font-size: 18px; color: {{ A.light }};"></i>
+          <span>{{ histToggleTxt }}</span>
+        </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ esMensual }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top: 56px;">
+        <sc-if value="{{ sinMes }}" hint-placeholder-val="{{ false }}">
+          <div data-reveal="1" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); padding: {{ L.cardPad }}; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+            <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 0%, rgba({{ A.rgb }},0.32), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+            <div style="position: relative; font-size: 26px; font-weight: 500;">{{ vacioTxt }}</div>
+            <div style="position: relative; font-size: 13px; color: #9aa3c0;">Meses con registro</div>
+            <div style="position: relative; display: flex; gap: 8px; flex-wrap: wrap;">
+              <sc-for list="{{ mesesDisponibles }}" as="c" hint-placeholder-count="3">
+                <button onClick="{{ c.onClick }}" style="cursor: pointer; font-family: var(--font-body); font-size: 14px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{ A.c }}; background: rgba({{ A.rgb }},0.16); color: #f4f6ff;" style-hover="background: rgba(255,255,255,0.12)">{{ c.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ hayMes }}" hint-placeholder-val="{{ false }}">
+          <div style="position: relative; padding-left: {{ L.secPadL }};">
+            <div style="position: absolute; top: 0; bottom: 0; width: 2px; overflow: hidden; background: linear-gradient(180deg, {{ A.c }} 0%, rgba({{ A.rgb }},0.35) 70%, transparent 100%); box-shadow: 0 0 18px rgba({{ A.rgb }},0.6); left: {{ L.lineX }};">{{ pulso }}</div>
+
+            <section data-reveal="1" data-screen-label="01 Dato principal" style="position: relative; margin-bottom: {{ L.gapSec }};">
+              <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.dato }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.dato }} · Dato principal</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">{{ datoLabel }}</h2>
+              <div data-tilt="5" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.datoPad }};">
+                <div style="position: absolute; left: 5%; right: 5%; bottom: -55%; height: 100%; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba({{ A.rgb }},0.85), rgba({{ A.rgb }},0.15) 60%, transparent); filter: blur(30px); animation: respirar 6s ease-in-out infinite;"></div>
+                <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 0%, rgba({{ A.rgb }},0.25), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+                {{ barrido }}
+                <div style="position: relative; display: grid; align-items: center; gap: 44px; grid-template-columns: {{ L.datoCols }};">
+                  <div style="display: flex; flex-direction: column; gap: 18px; min-width: 0; container-type: inline-size;">
+                    <div style="font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.04em; line-height: 0.92; overflow-wrap: normal; word-break: keep-all; hyphens: none; color: #f4f6ff; text-shadow: 0 0 60px rgba({{ A.rgb }},0.8); font-size: {{ datoSize }};">{{ datoValor }}</div>
+                    <div style="max-width: 58ch; font-size: 17px; line-height: 1.5; color: #d6dbea;">{{ datoNota }}</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 20px; padding: 26px; border-radius: 22px; background: rgba(3,5,26,0.4); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);">
+                    <div style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: {{ A.light }};">Top 3 del mes</div>
+                    <sc-for list="{{ top3 }}" as="t3" hint-placeholder-count="3">
+                      <div data-tip="{{ t3.tip }}" style="display: flex; flex-direction: column; gap: 8px; padding: 6px 8px; margin: -6px -8px; border-radius: 12px; transition: background 0.25s;" style-hover="background: rgba(255,255,255,0.06)">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+                          <span style="font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; color: #d6dbea; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ t3.name }}</span>
+                          <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">{{ t3.pct }}</span>
+                        </div>
+                        <span style="display: block; height: 14px;"><span data-grow="1" style="display: block; height: 100%; min-width: 5px; border-radius: 999px; transform-origin: left; background: linear-gradient(90deg, #ffffff 0%, {{ A.light }} 45%, {{ A.c }} 100%); box-shadow: 0 0 18px rgba({{ A.rgb }},0.75), inset 0 1px 0 rgba(255,255,255,0.8); width: {{ t3.w }}%;"></span></span>
+                      </div>
+                    </sc-for>
+                    <div style="font-size: 12px; color: #9aa3c0;">La barra más larga es el área con más demanda; las demás, en proporción.</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section data-reveal="1" data-screen-label="02 Top 5" style="position: relative; margin-bottom: {{ L.gapSec }};">
+              <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.top }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.top }} · {{ totalMesTxt }}</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">Las cinco áreas con mayor demanda</h2>
+              <div data-tilt="4" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.cardPad }}; display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: {{ L.pieGap }};">
+                <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 30% 30%, rgba({{ A.rgb }},0.22), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+                <div style="position: relative; flex: none; display: flex; flex-direction: column; gap: 6px; width: {{ L.pie }}; max-width: 100%;">
+                  <div style="display: flex; flex-direction: column; gap: 6px; min-height: {{ L.focoH }};">
+                    <span style="font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.05em; line-height: 0.85; color: #ffffff; text-shadow: 0 0 44px rgba({{ A.rgb }},0.95); font-size: {{ L.centroF }};">{{ centroPct }}</span>
+                    <span style="font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: {{ A.light }};">{{ centroName }}</span>
+                    <span style="font-size: 13px; color: #9aa3c0;">{{ centroVal }}</span>
+                  </div>
+                <div style="position: relative; perspective: 1400px; width: 100%; height: {{ L.pieH }};">
+                  <div style="position: absolute; left: 6%; right: 6%; top: 56%; height: 42%; border-radius: 50%; background: radial-gradient(closest-side, rgba({{ A.rgb }},0.85), transparent); filter: blur(22px); opacity: {{ discoGlow }}; transition: opacity 0.4s;"></div>
+                  <div data-spin="1" style="position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; transform: translate(-50%, -50%) rotateX(60deg); width: {{ L.pie }}; height: {{ L.pie }};">
+                    {{ orbita }}
+                    <sc-for list="{{ capas }}" as="cp" hint-placeholder-count="8">
+                      <svg viewBox="0 0 160 160" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; transform: translateZ({{ cp.z }}px) rotate(-90deg); filter: {{ cp.f }};">
+                        <sc-for list="{{ top5 }}" as="s" hint-placeholder-count="6">
+                          <circle cx="80" cy="80" r="60" fill="none" stroke="{{ s.color }}" stroke-width="34" stroke-dasharray="{{ s.dash }}" stroke-dashoffset="{{ s.offset }}"></circle>
+                        </sc-for>
+                      </svg>
+                    </sc-for>
+                    <svg viewBox="0 0 160 160" style="position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); filter: drop-shadow(0 0 14px rgba({{ A.rgb }},0.75)); overflow: visible;">
+                      <sc-for list="{{ top5 }}" as="s" hint-placeholder-count="6">
+                        <circle cx="80" cy="80" r="60" fill="none" stroke="#ffffff" stroke-width="{{ s.ow }}" stroke-dasharray="{{ s.dash }}" stroke-dashoffset="{{ s.offset }}" opacity="{{ s.oo }}" style="pointer-events: none; transform: {{ s.tr }}; filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); transition: opacity 0.25s, stroke-width 0.5s cubic-bezier(.2,1.5,.4,1), transform 0.5s cubic-bezier(.2,1.5,.4,1);"></circle>
+                        <circle data-tip="{{ s.tip }}" onMouseEnter="{{ s.onDisco }}" onMouseLeave="{{ s.onLeave }}" cx="80" cy="80" r="60" fill="none" stroke="{{ s.color }}" stroke-width="{{ s.sw }}" stroke-dasharray="{{ s.dash }}" stroke-dashoffset="{{ s.offset }}" opacity="{{ s.op }}" style="cursor: pointer; transform: {{ s.tr }}; transition: opacity 0.35s, stroke-width 0.5s cubic-bezier(.2,1.5,.4,1), transform 0.5s cubic-bezier(.2,1.5,.4,1);"></circle>
+                      </sc-for>
+                      <circle cx="80" cy="80" r="42" fill="rgba(8,12,40,0.55)" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"></circle>
+                      <circle cx="80" cy="80" r="78" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"></circle>
+                    </svg>
+                  </div>
+                </div>
+                </div>
+                <div style="position: relative; flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{ top5 }}" as="s" hint-placeholder-count="6">
+                    <div onMouseEnter="{{ s.onEnter }}" onMouseLeave="{{ s.onLeave }}" style="display: grid; grid-template-columns: 14px minmax(0, 1fr) auto 58px; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 16px; cursor: pointer; background: {{ s.rowBg }}; border: 1px solid {{ s.rowBd }}; transition: background 0.3s, border-color 0.3s, transform 0.3s; transform: {{ s.rowT }};">
+                      <span style="display: block; width: 12px; height: 12px; border-radius: 50%; background: {{ s.color }}; box-shadow: 0 0 12px {{ s.color }};"></span>
+                      <span style="font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ s.name }}</span>
+                      <span style="font-size: 13px; font-variant-numeric: tabular-nums; color: #9aa3c0; white-space: nowrap;">{{ s.val }}</span>
+                      <span style="font-size: 20px; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right;">{{ s.pct }}%</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </section>
+
+            <section data-reveal="1" data-screen-label="03 Desglose" style="position: relative; margin-bottom: {{ L.gapSec }};">
+              <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.des }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.des }} · Desglose</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">{{ desgloseTitulo }}</h2>
+              <div data-tilt="3" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.cardPad }};">
+                <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 100% 0%, rgba({{ A.rgb }},0.22), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+                <div style="position: relative; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{ desglosePrincipal }}" as="it" hint-placeholder-count="5">
+                    <div data-tip="{{ it.tip }}" style="display: grid; align-items: center; gap: 18px; padding: 12px 14px; border-radius: 14px; transition: background 0.3s, transform 0.3s; grid-template-columns: {{ L.itemCols }};" style-hover="background: rgba(255,255,255,0.05); transform: translateX(6px)">
+                      <span style="font-size: 15px; color: #d6dbea; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ it.name }}</span>
+                      <span style="position: relative; display: block; height: 16px;">
+                        <span data-grow="1" style="position: absolute; left: 0; top: 0; bottom: 0; min-width: 5px; transform-origin: left; border-radius: 999px; background: linear-gradient(90deg, #ffffff 0%, {{ A.light }} 55%, {{ A.c }} 100%); box-shadow: 0 0 18px rgba({{ A.rgb }},0.7), inset 0 1px 0 rgba(255,255,255,0.85); width: {{ it.bar }}%; transition: width 0.8s cubic-bezier(.2,.7,.2,1);"></span>
+                      </span>
+                      <span style="font-size: 15px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;">{{ it.val }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </section>
+
+            <sc-if value="{{ esFoto }}" hint-placeholder-val="{{ false }}">
+              <section data-reveal="1" data-screen-label="04 Primera vs Femenino" style="position: relative; margin-bottom: {{ L.gapSec }};">
+                <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.vs }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.vs }} · Primera y Femenino</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">Fotos por tipo de cobertura</h2>
+                <div style="display: grid; gap: 18px; grid-template-columns: {{ L.vsCols }};">
+                  <sc-for list="{{ vsFilas }}" as="v" hint-placeholder-count="3">
+                    <div data-tilt="8" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: 26px 24px 22px; display: flex; flex-direction: column; gap: 18px;">
+                      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 100%, rgba({{ A.rgb }},0.28), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+                      <div style="position: relative; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #d6dbea;">{{ v.tipo }}</div>
+                      <div style="position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 28px; height: {{ L.vsH }};">
+                        <div data-tip="{{ v.tipP }}" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 12px; height: 100%; width: {{ L.cylW }};">
+                          <span style="font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap;">{{ v.primera }}</span>
+                          <div data-growy="1" style="position: relative; transform-origin: bottom; border-radius: 12px 12px 6px 6px; background: linear-gradient(90deg, rgba({{ A.rgb }},0.45) 0%, {{ A.c }} 45%, rgba({{ A.rgb }},0.45) 100%); box-shadow: 0 0 34px rgba({{ A.rgb }},0.45), inset 0 0 0 1px rgba(255,255,255,0.18); height: {{ v.wP }}%; width: 100%; min-height: 3px;"><div style="position: absolute; left: 0; right: 0; top: -8px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.75), {{ A.c }} 70%); box-shadow: 0 0 16px {{ A.c }};"></div></div>
+                        </div>
+                        <div data-tip="{{ v.tipF }}" style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 12px; height: 100%; width: {{ L.cylW }};">
+                          <span style="font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap;">{{ v.femenino }}</span>
+                          <div data-growy="1" style="position: relative; transform-origin: bottom; border-radius: 12px 12px 6px 6px; background: linear-gradient(90deg, rgba(255,255,255,0.25) 0%, {{ A.light }} 45%, rgba(255,255,255,0.25) 100%); box-shadow: 0 0 34px rgba(255,255,255,0.25), inset 0 0 0 1px rgba(255,255,255,0.18); height: {{ v.wF }}%; width: 100%; min-height: 3px;"><div style="position: absolute; left: 0; right: 0; top: -8px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.75), {{ A.light }} 70%); box-shadow: 0 0 16px {{ A.light }};"></div></div>
+                        </div>
+                      </div>
+                      <div style="position: relative; display: flex; justify-content: center; gap: 28px; font-size: 12px; color: #9aa3c0;">
+                        <span style="display: flex; align-items: center; gap: 6px;"><span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: {{ A.c }};"></span>Primera</span>
+                        <span style="display: flex; align-items: center; gap: 6px;"><span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: {{ A.light }};"></span>Femenino</span>
+                      </div>
+                      <div style="position: relative; font-size: 13px; color: #9aa3c0; text-align: center;">{{ v.nota }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <p style="margin: 18px 0 0; max-width: 84ch; font-size: 13px; line-height: 1.6; color: #9aa3c0;">{{ vsNota }}</p>
+              </section>
+            </sc-if>
+
+            <section data-reveal="1" data-screen-label="Desglose completo" style="position: relative; margin-bottom: {{ L.gapSec }};">
+              <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.comp }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.comp }} · Detalle</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">Qué pidió cada área</h2>
+              <button onClick="{{ toggleCompleto }}" style="width: 100%; cursor: pointer; font-family: var(--font-body); font-size: 16px; font-weight: 500; padding: 20px 24px; border-radius: 22px; border: 1px solid {{ A.c }}; color: #f4f6ff; position: relative; overflow: hidden; background: linear-gradient(90deg, rgba({{ A.rgb }},0.30), rgba({{ A.rgb }},0.08)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 0 40px rgba({{ A.rgb }},0.35); backdrop-filter: blur(18px); display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: transform 0.35s, box-shadow 0.35s;" style-hover="transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 60px rgba(255,255,255,0.18)">
+                {{ barrido }}
+                <span style="position: relative;">{{ completoBtn }}</span>
+                <span style="position: relative; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); font-size: 20px;"><i class="{{ completoIco }}"></i></span>
+              </button>
+              <sc-if value="{{ completo }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top: 18px; display: grid; gap: 14px; grid-template-columns: {{ L.compGrid }};">
+                  <sc-for list="{{ filasCompleto }}" as="fa" hint-placeholder-count="6">
+                    <div style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;">
+                      <div style="position: relative; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;">{{ fa.name }}</span>
+                        <span style="font-size: 12px; color: {{ A.light }}; white-space: nowrap;">{{ fa.resumen }}</span>
+                      </div>
+                      <sc-for list="{{ fa.items }}" as="it" hint-placeholder-count="3">
+                        <div data-tip="{{ it.tip }}" style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 96px auto; align-items: center; gap: 12px; padding: 3px 6px; margin: 0 -6px; border-radius: 8px;" style-hover="background: rgba(255,255,255,0.06)">
+                          <span style="font-size: 13px; color: #d6dbea; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ it.name }}</span>
+                          <span style="display: block; height: 8px;"><span style="display: block; height: 100%; min-width: 4px; border-radius: 999px; background: #f4f6ff; box-shadow: 0 0 10px rgba({{ A.rgb }},0.95); width: {{ it.bar }}%;"></span></span>
+                          <span style="font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; color: #9aa3c0; white-space: nowrap;">{{ it.val }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </section>
+
+            <section data-reveal="1" data-screen-label="Conclusiones" style="position: relative;">
+              <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">{{ n.concl }}</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso {{ n.concl }} · Conclusiones</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">{{ conclusionesTitulo }}</h2>
+              <div style="display: grid; gap: 22px; grid-template-columns: {{ L.conclCols }};">
+                <sc-for list="{{ conclusionesArea }}" as="i" hint-placeholder-count="3">
+                  <div style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); padding: 26px; display: flex; flex-direction: column; gap: 16px; transform: rotate({{ i.rot }}deg); transition: transform 0.5s cubic-bezier(.2,.7,.2,1), box-shadow 0.5s;" style-hover="transform: rotate(0deg) translateY(-8px); box-shadow: 0 50px 90px -20px rgba(0,0,0,0.7)">
+                    <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 20% 0%, rgba({{ A.rgb }},0.45), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+                    <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                      <span style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: {{ A.light }};">{{ i.k }}</span>
+                      <span style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 14px; background: rgba({{ A.rgb }},0.18); border: 1px solid rgba(255,255,255,0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 20px rgba({{ A.rgb }},0.5);"><i class="{{ i.ico }}" style="font-size: 20px; color: {{ A.c }};"></i></span>
+                    </div>
+                    <div style="position: relative; font-size: 17px; line-height: 1.5; color: #f4f6ff; text-wrap: pretty;">{{ i.t }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </section>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ esHistorico }}" hint-placeholder-val="{{ false }}">
+      <div style="position: relative; margin-top: 56px; padding-left: {{ L.secPadL }};">
+        <div style="position: absolute; top: 0; bottom: 0; width: 2px; overflow: hidden; background: linear-gradient(180deg, {{ A.c }} 0%, rgba({{ A.rgb }},0.35) 70%, transparent 100%); box-shadow: 0 0 18px rgba({{ A.rgb }},0.6); left: {{ L.lineX }};">{{ pulso }}</div>
+
+        <sc-if value="{{ histDiseno }}" hint-placeholder-val="{{ false }}">
+          <section data-reveal="1" data-screen-label="01 Composición mensual" style="position: relative; margin-bottom: {{ L.gapSec }};">
+            <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">01</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso 01 · {{ histSub }}</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">Cómo se compone la actividad de cada mes</h2>
+            <div data-tilt="3" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.cardPad }};">
+              <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 0% 0%, rgba({{ A.rgb }},0.25), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+              <div style="position: relative; display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 26px;">
+                <sc-for list="{{ compLeyenda }}" as="l" hint-placeholder-count="7">
+                  <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #d6dbea;"><span style="display: block; width: 10px; height: 10px; border-radius: 50%; background: {{ l.color }}; box-shadow: 0 0 10px {{ l.color }};"></span>{{ l.label }}</span>
+                </sc-for>
+              </div>
+              <div style="position: relative; display: flex; flex-direction: column; gap: 16px;">
+                <sc-for list="{{ compMeses }}" as="m" hint-placeholder-count="6">
+                  <div style="display: grid; align-items: center; gap: 16px; grid-template-columns: {{ L.compCols }};">
+                    <span style="font-size: 15px; font-weight: 500; color: #d6dbea;">{{ m.label }}</span>
+                    <span data-grow="1" style="position: relative; display: flex; height: {{ L.tubeH }}; border-radius: 999px; overflow: hidden; transform-origin: left; background: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 24px rgba({{ A.rgb }},0.25);">
+                      <sc-for list="{{ m.segs }}" as="g" hint-placeholder-count="7">
+                        <span data-tip="{{ g.tip }}" style="display: flex; align-items: center; justify-content: center; overflow: hidden; height: 100%; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; background: {{ g.color }}; color: {{ g.fg }}; width: {{ g.w }}%; transition: width 0.8s, filter 0.3s;" style-hover="filter: brightness(1.35)">{{ g.txt }}</span>
+                      </sc-for>
+                      <span style="position: absolute; left: 0; right: 0; top: 0; height: 50%; pointer-events: none; background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0)); border-radius: 999px 999px 0 0;"></span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="position: relative; margin: 20px 0 0; font-size: 13px; color: #9aa3c0;">Cada barra es el 100% de la actividad del mes, repartida por área solicitante.</p>
+            </div>
+          </section>
+        </sc-if>
+
+        <sc-if value="{{ histNoDiseno }}" hint-placeholder-val="{{ true }}">
+          <section data-reveal="1" data-screen-label="01 Total por mes" style="position: relative; margin-bottom: {{ L.gapSec }};">
+            <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">01</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso 01 · {{ histSub }}</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">{{ histTitulo }}</h2>
+            <div data-tilt="4" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.cardPad }};">
+              <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 50% 100%, rgba({{ A.rgb }},0.3), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+              <div style="position: relative; display: flex; align-items: flex-end; height: {{ L.colH }}; gap: {{ L.colGap }}; border-bottom: 1px solid rgba(255,255,255,0.12);">
+                <sc-for list="{{ histEje }}" as="e" hint-placeholder-count="2">
+                  <div style="position: absolute; left: 0; right: 0; height: 1px; pointer-events: none; background: rgba(255,255,255,0.12); bottom: {{ e.b }}%;"><span style="position: absolute; left: 0; top: -20px; font-size: 12px; color: #9aa3c0; font-variant-numeric: tabular-nums;">{{ e.val }}</span></div>
+                </sc-for>
+                <sc-for list="{{ histMeses }}" as="m" hint-placeholder-count="5">
+                  <div data-tip="{{ m.tip }}" style="flex: 1; height: 100%; min-width: 0; position: relative; display: flex; justify-content: center; align-items: flex-end; transition: filter 0.3s;" style-hover="filter: brightness(1.3)">
+                    <span style="position: absolute; left: 0; right: 0; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 500; font-size: {{ L.colValF }}; bottom: calc({{ m.h }}% + 16px);">{{ m.val }}</span>
+                    <div data-growy="1" style="position: relative; transform-origin: bottom; border-radius: 12px 12px 6px 6px; background: linear-gradient(90deg, rgba({{ A.rgb }},0.35) 0%, {{ m.color }} 45%, rgba({{ A.rgb }},0.35) 100%); box-shadow: 0 0 34px rgba({{ A.rgb }},0.35), inset 0 0 0 1px rgba(255,255,255,0.18); height: {{ m.h }}%; width: 100%; max-width: {{ L.cylW }}; min-height: 3px;"><div style="position: absolute; left: 0; right: 0; top: -8px; height: 16px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.75), {{ m.color }} 70%); box-shadow: 0 0 16px {{ m.color }};"></div></div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="position: relative; display: flex; margin-top: 12px; gap: {{ L.colGap }};">
+                <sc-for list="{{ histMeses }}" as="m" hint-placeholder-count="5">
+                  <div style="flex: 1; min-width: 0; text-align: center; font-size: 14px; font-weight: 500; color: #d6dbea;">{{ m.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </section>
+        </sc-if>
+
+        <section data-reveal="1" data-screen-label="02 Por área" style="position: relative;">
+          <div style="position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(5,8,28,0.85); border: 1px solid {{ A.c }}; color: #f4f6ff; font-size: {{ L.nodeF }}; font-variant-numeric: tabular-nums; box-shadow: 0 0 0 6px rgba({{ A.rgb }},0.12), 0 0 28px rgba({{ A.rgb }},0.7); left: {{ L.nodeLeft }}; width: {{ L.node }}; height: {{ L.node }};">02</div>
+<div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: {{ A.light }}; margin-bottom: 10px;">Paso 02 · {{ histPorLabel }}</div>
+<h2 style="margin: 0 0 28px; font-family: var(--font-heading); font-weight: 500; letter-spacing: -0.025em; line-height: 1.02; color: #f4f6ff; text-wrap: balance; font-size: {{ L.h2 }};">Áreas en todo el período</h2>
+          <div data-tilt="2" style="position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0.015) 100%); border: 1px solid rgba(255,255,255,0.12); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 40px 80px -24px rgba(0,0,0,0.65); backdrop-filter: blur(28px) saturate(150%); transition: transform 0.45s cubic-bezier(.2,.7,.2,1); will-change: transform; padding: {{ L.cardPad }};">
+            <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 55% at 100% 0%, rgba({{ A.rgb }},0.22), transparent 70%); transition: background 1.2s;"></div>
+<div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(255,255,255,0.09), transparent 60%);"></div>
+<div style="position: absolute; left: 12%; right: 12%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, {{ A.c }}, transparent);"></div>
+            <div style="position: relative; display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px;">
+              <sc-for list="{{ histLeyenda }}" as="l" hint-placeholder-count="5">
+                <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #d6dbea;"><span style="display: block; width: 10px; height: 10px; border-radius: 50%; background: {{ l.color }}; box-shadow: 0 0 10px {{ l.color }};"></span>{{ l.label }}</span>
+              </sc-for>
+            </div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 12px;">
+              <sc-for list="{{ histFilas }}" as="r" hint-placeholder-count="10">
+                <div style="display: grid; align-items: center; gap: 16px; padding: 6px 10px; border-radius: 12px; transition: background 0.3s; grid-template-columns: {{ L.histCols }};" style-hover="background: rgba(255,255,255,0.05)">
+                  <span style="font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #d6dbea;">{{ r.name }}</span>
+                  <span data-grow="1" style="position: relative; display: flex; height: 18px; border-radius: 999px; overflow: hidden; transform-origin: left;">
+                    <sc-for list="{{ r.segs }}" as="sg" hint-placeholder-count="3">
+                      <span data-tip="{{ sg.tip }}" style="display: block; height: 100%; min-width: 3px; background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0) 55%), {{ sg.color }}; width: {{ sg.w }}%; transition: width 0.8s, filter 0.25s;" style-hover="filter: brightness(1.4)"></span>
+                    </sc-for>
+                  </span>
+                  <span style="font-size: 14px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;">{{ r.total }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ histHayMas }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ toggleHist }}" style="position: relative; margin-top: 20px; cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 11px 20px; border-radius: 999px; border: 1px solid {{ A.c }}; background: rgba({{ A.rgb }},0.16); color: #f4f6ff;" style-hover="background: rgba(255,255,255,0.12)">{{ histBtn }}</button>
+            </sc-if>
+          </div>
+          <p style="margin: 18px 0 0; max-width: 84ch; font-size: 14px; color: #9aa3c0;">{{ histNota }}</p>
+        </section>
+      </div>
+    </sc-if>
+
+    <p style="margin: 100px 0 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); max-width: 90ch; font-size: 12px; line-height: 1.6; color: #9aa3c0;">Fuentes: planillas ARTE Y DISEÑO, PRODUCCIÓN GRAFICA (demanda y gastos) y Análisis de demanda fotográfica por área. Los gastos de producción se muestran en pesos con la coma de la planilla corregida.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ESCUDO = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1OS4wMDMiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1OS4wMDMiPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuNjI2IDE0LjM0Nikgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAyNC4zNjYgMCBMIDQyLjYxNyAwIEwgNDguNzM1IDguNDAzIEMgNDYuNSA5Ljk4NSA0MS43NzYgMTIuMzgzIDQzLjI2NyAxNy41NjYgQyA0My45MDMgMjEuMDU3IDQ4LjQzMSAyMi45MDkgNDguMzk5IDI5LjI2MSBDIDQ4LjQzMSA0NC43NSAyOS45ODEgMzguMjMyIDI0LjcwMSA0My45ODcgQyAxOS40MjUgMzguMjMyIDAuMzA3IDQ0Ljc1IDAuMzMgMjkuMjYxIEMgMC4zMDQgMjIuOTA5IDQuODM3IDIxLjA1NyA1LjQ3NiAxNy41NjYgQyA2Ljk2MSAxMi4zODYgMi4yNDMgOS45ODUgMCA4LjQwMyBMIDYuMTIgMCBMIDI0LjM2MyAwIEwgMjQuMzY2IDAgWiIgZmlsbD0icmdiKDMxLDUxLDk0KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMTMuOTA0KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDI1LjMyNyA0NS4wOTQgTCAyNC45OTIgNDQuNzM0IEMgMjMuMTc5IDQyLjc1MyAxOS40OSA0Mi4yOTUgMTUuNTgxIDQxLjgxMiBDIDEyLjAxOCA0MS4zNyA4LjMyNiA0MC45MDkgNS40NSAzOS4yOSBDIDIuMTIgMzcuNDEgMC41MDMgMzQuMjcgMC41MTEgMjkuNzAzIEMgMC40OTMgMjUuNjkyIDIuMTk4IDIzLjQ0MiAzLjcwNyAyMS40NTggQyA0LjYyNyAyMC4yNCA1LjQyNiAxOS4xOSA1LjY1NyAxNy45MjUgTCA1LjY2NCAxNy44ODQgQyA2LjkwNiAxMy41NzggMy42IDExLjM2OSAxLjE4MiA5Ljc1NSBDIDAuODkxIDkuNTY0IDAuNjEgOS4zNzggMC4zNjkgOS4xOTkgTCAwIDguOTQ2IEwgNi41MjQgMCBMIDQzLjQ3NiAwIEwgNTAgOC45NDYgTCA0OS42MjUgOS4yMDQgQyA0OS4zODIgOS4zODMgNDkuMTA3IDkuNTY3IDQ4LjgxOCA5Ljc2IEMgNDYuNDAzIDExLjM3NCA0My4wODggMTMuNTgzIDQ0LjMzIDE3Ljg4OSBMIDQ0LjM0MyAxNy45MyBDIDQ0LjU3MSAxOS4xOTUgNDUuMzcgMjAuMjQ1IDQ2LjI5MyAyMS40NjMgQyA0Ny43OTkgMjMuNDQ3IDQ5LjUgMjUuNjk3IDQ5LjQ4OSAyOS43MTEgQyA0OS40OTIgMzQuMjc4IDQ3LjkzIDM3LjQxNSA0NC43MDUgMzkuMjk1IEMgNDEuOTA5IDQwLjkxNyAzOC4zMzMgNDEuMzc1IDM0Ljg2MiA0MS44MTcgQyAzMS4wNjggNDIuMjk4IDI3LjQ3MyA0Mi43NTggMjUuNjYgNDQuNzM5IEwgMjUuMzI3IDQ1LjA5OSBMIDI1LjMyNyA0NS4wOTQgWiBNIDYuNTQyIDE4LjEwNCBDIDYuMjY3IDE5LjU3MyA1LjM3NCAyMC43NDkgNC40MyAyMS45OTkgQyAzLjAxMyAyMy44NjggMS4zOTkgMjUuOTk0IDEuNDE1IDI5LjcwNiBDIDEuMzk5IDM5LjE1MyA4LjY2NCA0MC4wNTMgMTUuNjk5IDQwLjkzIEMgMTkuNTY5IDQxLjQwNiAyMy4yMjQgNDEuODY2IDI1LjMzMyA0My43OTggQyAyNy40MjYgNDEuODY2IDMwLjk5MiA0MS40MTQgMzQuNzU0IDQwLjkzIEMgNDEuNTYxIDQwLjA2MSA0OC41OTggMzkuMTYxIDQ4LjU4OCAyOS43MDggQyA0OC42MDEgMjUuOTk0IDQ2Ljk5MiAyMy44NjggNDUuNTcgMjEuOTk5IEMgNDQuNjI0IDIwLjc0OSA0My43MzMgMTkuNTczIDQzLjQ1OCAxOC4xMDQgQyA0Mi4wNTYgMTMuMTkgNDUuOTc4IDEwLjU4IDQ4LjMxIDkuMDE4IEMgNDguNDU5IDguOTI1IDQ4LjYwMSA4LjgzMiA0OC43MzIgOC43MzkgTCA0My4wMiAwLjg5MiBMIDYuOTgyIDAuODkyIEwgMS4yNjggOC43MzkgQyAxLjM5OSA4LjgzNSAxLjU0MSA4LjkyOCAxLjY4MiA5LjAxOCBDIDQuMDI0IDEwLjU4IDcuOTQ5IDEzLjE5MiA2LjU0IDE4LjEwNCIgZmlsbD0icmdiKDE4MCwxNzksMTc5KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMjkyIDIzLjY2NCkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAwIDAgTCA0LjYwOSAwIEwgNC42MDkgMjkuNjc3IEMgMi4wNjIgMjkuMTQ0IDAuNjUyIDI4LjgzMSAwIDI4LjM2MSBMIDAgMCBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOC4yNzkgMjMuNjQ5KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDQuNjQgMjkuNzAzIEwgNC42MTkgMjkuNzAzIEMgMi4xMTIgMjkuMTg2IDAuNjYzIDI4Ljg3IDAgMjguMzg0IEwgMCAwIEwgNC42NCAwIEwgNC42NCAyOS43MDMgWiBNIDAuMDI2IDI4LjM3MSBDIDAuNjgxIDI4Ljg0MiAyLjEyNyAyOS4xNiA0LjYxMSAyOS42NzUgTCA0LjYxMSAwLjAzNiBMIDAuMDI2IDAuMDM2IEwgMC4wMjYgMjguMzcxIFoiIGZpbGw9InJnYigyNTUsMjU1LDI1NSkiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNy4xMjUgMjMuNjY0KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDQuNjE0IDAgTCAwIDAgTCAwIDI5LjY3NyBDIDIuNTQ3IDI5LjE0NCAzLjk2NCAyOC44MzEgNC42MTQgMjguMzYxIEwgNC42MTQgMCBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzcuMTEyIDIzLjY1MSkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAwIDI5LjcgTCAwIDAgTCA0LjY0IDAgTCA0LjY0IDI4LjM3OSBMIDQuNjMyIDI4LjM3OSBDIDMuOTc3IDI4Ljg2MiAyLjUyNiAyOS4xODMgMC4wMTggMjkuNyBMIDAgMjkuNyBaIE0gMC4wMjkgMC4wMzQgTCAwLjAyOSAyOS42NzIgQyAyLjUxNSAyOS4xNTcgMy45NTYgMjguODM5IDQuNjA5IDI4LjM2OSBMIDQuNjA5IDAuMDM0IEwgMC4wMjkgMC4wMzQgWiIgZmlsbD0icmdiKDI1NSwyNTUsMjU1KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3LjczNyAyMy42NjQpIHNjYWxlKDEgMSkgdHJhbnNsYXRlKDAgMCkiPjxwYXRoIGQ9Ik0gMCAwIEwgNC42MTEgMCBMIDQuNjExIDMxLjEzMSBDIDMuMDc4IDMwLjc0IDEuMjkyIDMwLjMyNCAwIDMwLjEyNSBMIDAgMCBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTcuNzE2IDIzLjY1MSkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSA0LjY0IDMxLjE2NCBMIDQuNjI0IDMxLjE1NiBDIDMuMjg4IDMwLjgxNSAxLjQwMiAzMC4zNjUgMC4wMTYgMzAuMTUzIEwgMCAzMC4xNTMgTCAwIDAgTCA0LjY0MyAwIEwgNC42NDMgMzEuMTY0IEwgNC42NCAzMS4xNjQgWiBNIDAuMDMxIDMwLjEzIEMgMS40MTIgMzAuMzQyIDMuMjggMzAuNzg5IDQuNjE0IDMxLjEzMSBMIDQuNjE0IDAuMDM0IEwgMC4wMzEgMC4wMzQgTCAwLjAzMSAzMC4xMyBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjcuODQgMjMuNjY0KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDQuNjExIDAgTCAwIDAgTCAwIDMxLjEzMSBDIDEuNTIyIDMwLjc0IDMuMzE0IDMwLjMyNCA0LjYxMSAzMC4xMjUgTCA0LjYxMSAwIFoiIGZpbGw9InJnYigyNTUsMjU1LDI1NSkiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNy44MjcgMjMuNjUxKSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDAgMzEuMTY0IEwgMCAwIEwgNC42MzcgMCBMIDQuNjM3IDMwLjE1MyBMIDQuNjI0IDMwLjE1MyBDIDMuMjI1IDMwLjM2NSAxLjM1MiAzMC44MTUgMC4wMTYgMzEuMTU2IEwgMCAzMS4xNjQgWiBNIDAuMDI2IDAuMDM0IEwgMC4wMjYgMzEuMTMxIEMgMS4zNTcgMzAuNzg5IDMuMjI1IDMwLjM0MiA0LjYwOSAzMC4xMyBMIDQuNjA5IDAuMDM0IEwgMC4wMjYgMC4wMzQgWiIgZmlsbD0icmdiKDI1NSwyNTUsMjU1KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEzLjkxMiAxNi44OCkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAzLjU2NiAwLjczNCBMIDAuOTY0IDAuNzM0IEwgMC45NjQgMy4zMjYgTCAzLjU2NiAzLjMyNiBMIDMuNTY2IDIuNDQ0IEwgNC41MzMgMi42NDMgTCA0LjUzMyAzLjEyNyBDIDQuNTMzIDMuNTAyIDQuNDY0IDMuNzUzIDQuMzIgMy44OSBDIDQuMTc0IDQuMDI0IDMuOTA0IDQuMDk0IDMuNTA2IDQuMDk0IEwgMS4wMyA0LjA5NCBDIDAuNjIxIDQuMDk0IDAuMzUxIDQuMDI0IDAuMjEgMy44OSBDIDAuMDczIDMuNzUzIDAgMy40OTkgMCAzLjEyNyBMIDAgMC45NyBDIDAgMC41OTUgMC4wNzMgMC4zNDQgMC4yMSAwLjIwNCBDIDAuMzUxIDAuMDY3IDAuNjIxIDAgMS4wMyAwIEwgMy41MDYgMCBDIDMuOTA0IDAgNC4xNzQgMC4wNjUgNC4zMiAwLjIwNCBDIDQuNDY0IDAuMzQ0IDQuNTMzIDAuNTk1IDQuNTMzIDAuOTcgTCA0LjUzMyAxLjM1NSBMIDMuNTY2IDEuNTA1IEwgMy41NjYgMC43MzIgTCAzLjU2NiAwLjczNCBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAuMDg1IDE5Ljc0Nikgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAwLjkwNyAwIEwgMS4wNTEgMCBDIDEuMTIxIDAgMS4xNjkgMC4wMTggMS4xOTcgMC4wNTkgQyAxLjIzMSAwLjEwMSAxLjI0MiAwLjE3NiAxLjI0MiAwLjI5IEwgMS4yNDIgMC45MzQgQyAxLjI0MiAxLjA2MyAxLjIyOSAxLjEzOCAxLjE5NSAxLjE3NyBDIDEuMTYzIDEuMjEgMS4wNjQgMS4yMjggMC45MDcgMS4yMjggTCAwLjE4OSAxLjIyOCBDIDAuMTE4IDEuMjI4IDAuMDcxIDEuMjEgMC4wMzkgMS4xNjYgQyAwLjAwNSAxLjEyNSAwIDEuMDQyIDAgMC45MzQgTCAwIDAuMjkgQyAwIDAuMTcxIDAuMDA4IDAuMDg4IDAuMDQyIDAuMDU3IEMgMC4wNzEgMC4wMjEgMC4xNjggMC4wMDMgMC4zMzMgMC4wMDMgTCAwLjkwNyAwLjAwMyBMIDAuOTA3IDAgWiIgZmlsbD0icmdiKDI1NSwyNTUsMjU1KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyLjMwMSAxNi44OCkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSAwIDQuMDk0IEwgMi4zNDggMCBMIDMuMjc1IDAgTCA1LjY1NyA0LjA5NCBMIDQuNTc1IDQuMDk0IEwgNC4wNzQgMy4yMDQgTCAxLjQ0NCAzLjIwNCBMIDAuOTYyIDQuMDk0IEwgMC4wMDMgNC4wOTQgTCAwIDQuMDk0IFogTSAxLjg1OCAyLjQ2MiBMIDMuNjczIDIuNDYyIEwgMi43OCAwLjc5MSBMIDEuODU4IDIuNDYyIFoiIGZpbGw9InJnYigyNTUsMjU1LDI1NSkiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOC45MzggMTkuNzQ2KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDAuOTEyIDAgTCAxLjA1OCAwIEMgMS4xMzIgMCAxLjE3OSAwLjAxOCAxLjIwNSAwLjA1OSBDIDEuMjM0IDAuMTAxIDEuMjQ0IDAuMTc2IDEuMjQ0IDAuMjkgTCAxLjI0NCAwLjkzNCBDIDEuMjQ0IDEuMDYzIDEuMjMxIDEuMTM4IDEuMjA1IDEuMTc3IEMgMS4xNzEgMS4yMSAxLjA3NCAxLjIyOCAwLjkxMiAxLjIyOCBMIDAuMTk0IDEuMjI4IEMgMC4xMjYgMS4yMjggMC4wNzMgMS4yMSAwLjA0MiAxLjE2NiBDIDAuMDE4IDEuMTI1IDAgMS4wNDIgMCAwLjkzNCBMIDAgMC4yOSBDIDAgMC4xNzEgMC4wMTggMC4wODggMC4wNTIgMC4wNTcgQyAwLjA4NCAwLjAyMSAwLjE4MyAwLjAwMyAwLjM0MyAwLjAwMyBMIDAuOTE0IDAuMDAzIEwgMC45MTIgMCBaIiBmaWxsPSJyZ2IoMjU1LDI1NSwyNTUpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzEuMDE4IDE2Ljg4KSBzY2FsZSgxIDEpIHRyYW5zbGF0ZSgwIDApIj48cGF0aCBkPSJNIDIuODU4IDAuNzM0IEwgMi44NTggNC4wOTQgTCAxLjkwMiA0LjA5NCBMIDEuOTAyIDAuNzM0IEwgMCAwLjczNCBMIDAgMCBMIDQuNzc5IDAgTCA0Ljc3OSAwLjczNCBMIDIuODU4IDAuNzM0IFoiIGZpbGw9InJnYigyNTUsMjU1LDI1NSkiIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvZz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMi4wMDIgMCkgc2NhbGUoMSAxKSB0cmFuc2xhdGUoMCAwKSI+PHBhdGggZD0iTSA1LjE0NiAwIEwgNi4zNjEgMy42OTEgTCAxMC4yOTEgMy42OTEgTCA3LjExMyA1Ljk3MiBMIDguMzI2IDkuNjYyIEwgNS4xNDYgNy4zODEgTCAxLjk2NSA5LjY2MiBMIDMuMTgxIDUuOTcyIEwgMCAzLjY5MSBMIDMuOTMzIDMuNjkxIEwgNS4xNDYgMCBaIiBmaWxsPSJyZ2IoMTgwLDE3OSwxNzkpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjcuNzA0IDApIHNjYWxlKDEgMSkgdHJhbnNsYXRlKDAgMCkiPjxwYXRoIGQ9Ik0gNS4xNDYgMCBMIDYuMzYxIDMuNjkxIEwgMTAuMjk0IDMuNjkxIEwgNy4xMTMgNS45NzIgTCA4LjMyNiA5LjY2MiBMIDUuMTQ2IDcuMzgxIEwgMS45NjUgOS42NjIgTCAzLjE4MSA1Ljk3MiBMIDAgMy42OTEgTCAzLjkzMyAzLjY5MSBMIDUuMTQ2IDAgWiIgZmlsbD0icmdiKDE4MCwxNzksMTc5KSIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPgo8L3N2Zz4=';
+class Component extends DCLogic {
+  state = { hov: null, area: null, modo: 'mensual', mes: null, completo: false, histTodas: false,
+            vista: (typeof window !== 'undefined' && window.innerWidth < 700) ? 'mobile' : 'escritorio' };
+
+  componentDidMount() {
+    const listo = () => { this.forceUpdate(); setTimeout(() => this.animar(), 60); };
+    if (!window.DATOS) this._t = setInterval(() => { if (window.DATOS) { clearInterval(this._t); listo(); } }, 60);
+    else setTimeout(() => this.animar(), 60);
+    this._quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.fxLoop();
+    const tip = this._tip = document.createElement('div');
+    Object.assign(tip.style, { position: 'fixed', zIndex: '9999', pointerEvents: 'none', left: '0px', top: '0px', padding: '14px 16px', borderRadius: '16px',
+      background: 'rgba(10,14,40,0.9)', border: '1px solid rgba(255,255,255,0.22)', backdropFilter: 'blur(16px)', boxShadow: '0 20px 50px rgba(0,0,0,0.55)',
+      color: '#f4f6ff', fontFamily: getComputedStyle(document.body).fontFamily, maxWidth: '320px', opacity: '0', transform: 'translateY(6px)', transition: 'opacity 0.1s, transform 0.1s' });
+    document.body.appendChild(tip);
+    this._mov = e => {
+      this._mx = e.clientX / window.innerWidth; this._my = e.clientY / window.innerHeight;
+      const tEl = e.target && e.target.closest ? e.target.closest('[data-tip]') : null;
+      const txt = tEl ? tEl.getAttribute('data-tip') : '';
+      if (txt) {
+        if (tip._k !== txt) {
+          tip._k = txt; tip.textContent = '';
+          const p = txt.split('|');
+          const mk = (t, st) => { const d = document.createElement('div'); d.textContent = t; Object.assign(d.style, st); tip.appendChild(d); };
+          mk(p[0], { fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c9cfe0', marginBottom: '4px' });
+          if (p[1]) mk(p[1], { fontSize: '24px', fontWeight: '700', lineHeight: '1.1' });
+          if (p[2]) mk(p[2], { fontSize: '13px', color: '#9aa3c0', marginTop: '4px' });
+        }
+        const r = tip.getBoundingClientRect();
+        let x = e.clientX + 18, y = e.clientY + 18;
+        if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - 18;
+        if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - 18;
+        tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.style.opacity = '1'; tip.style.transform = 'none';
+      } else if (tip.style.opacity !== '0') { tip.style.opacity = '0'; tip.style.transform = 'translateY(6px)'; tip._k = ''; }
+      if (this._quieto) return;
+      const el = e.target && e.target.closest ? e.target.closest('[data-tilt]') : null;
+      if (this._tEl && this._tEl !== el) { this._tEl.style.transform = ''; this._tEl = null; }
+      if (!el) return;
+      this._tEl = el;
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      const k = +el.getAttribute('data-tilt') || 6;
+      el.style.transform = 'perspective(1400px) rotateX(' + ((0.5 - y) * k).toFixed(2) + 'deg) rotateY(' + ((x - 0.5) * k).toFixed(2) + 'deg) translateZ(0)';
+      el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    };
+    document.addEventListener('mousemove', this._mov);
+  }
+  componentDidUpdate(pp, ps) {
+    const S = this.state;
+    const k = [S.area, S.mes, S.modo, S.vista].join('|');
+    if (k !== this._prevK) { const primera = this._prevK === undefined; this._prevK = k; if (!primera) requestAnimationFrame(() => this.animar()); }
+  }
+  componentWillUnmount() { clearInterval(this._t); cancelAnimationFrame(this._raf); document.removeEventListener('mousemove', this._mov); if (this._tip) this._tip.remove(); }
+
+  animar() {
+    if (this._quieto || !document.body.animate) return;
+    const ease = 'cubic-bezier(.2,.7,.2,1)';
+    document.querySelectorAll('[data-reveal]').forEach((el, i) => el.animate(
+      [{ opacity: 0, transform: 'translateY(56px) scale(.97)', filter: 'blur(10px)' }, { opacity: 1, transform: 'none', filter: 'blur(0px)' }],
+      { duration: 1100, delay: Math.min(i, 10) * 110, easing: ease, fill: 'backwards' }));
+    document.querySelectorAll('[data-grow]').forEach((el, i) => el.animate(
+      [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 1300, delay: 450 + Math.min(i, 30) * 45, easing: ease, fill: 'backwards' }));
+    document.querySelectorAll('[data-growy]').forEach((el, i) => el.animate(
+      [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 1300, delay: 500 + i * 110, easing: ease, fill: 'backwards' }));
+    document.querySelectorAll('[data-spin]').forEach(el => el.animate(
+      [{ transform: 'translate(-50%, -50%) rotateX(85deg) rotateZ(-340deg) scale(.25)', opacity: 0 }, { transform: 'translate(-50%, -50%) rotateX(60deg) rotateZ(0deg) scale(1)', opacity: 1 }],
+      { duration: 2300, delay: 300, easing: 'cubic-bezier(.16,1.18,.3,1)', fill: 'backwards' }));
+  }
+
+  fmt(v) { return (Math.round(v * 10) / 10).toLocaleString('es-AR', { maximumFractionDigits: 1 }); }
+  pctTxt(v, t) { return this.fmt(t ? (v / t) * 100 : 0) + '%'; }
+  plata(v) { return '$\u00a0' + Math.round(v * 1000).toLocaleString('es-AR'); }
+  norm(n) { return n === 'TIENDA' ? 'TIENDAS' : n; }
+
+  serie(D, k) {
+    const eq = D.equipos.find(e => e.key === k);
+    const src = k === 'produccion' ? (eq.costos || []) : eq.meses;
+    return src.map(m => {
+      const map = {};
+      m.areas.forEach(a => {
+        const n = this.norm(a.name);
+        if (!map[n]) map[n] = { name: n, total: 0, items: [] };
+        map[n].total += a.total;
+        map[n].items.push(...a.items);
+      });
+      const areas = Object.values(map);
+      return { key: m.key, label: m.label, areas, total: areas.reduce((s, a) => s + a.total, 0) };
+    });
+  }
+
+  torta(pares, total, fmtVal, n) {
+    const paleta = this._pal || ['#3d7bff', '#a9c3ff', '#1d43b8', '#dbe6ff', '#5d6b99', '#2a3358'];
+    const orden = pares.slice().sort((a, b) => b[1] - a[1]);
+    const top = orden.slice(0, n);
+    const resto = orden.slice(n).reduce((s, p) => s + p[1], 0);
+    if (resto > 0) top.push(['Otras áreas', resto]);
+    const C = 2 * Math.PI * 60;
+    let acc = 0;
+    return top.map((p, i) => {
+      const frac = total ? p[1] / total : 0;
+      const seg = { name: p[0], raw: p[1], val: fmtVal(p[1]), pct: Math.round(frac * 100), color: paleta[i % paleta.length],
+        dash: (frac * C).toFixed(2) + ' ' + (C - frac * C).toFixed(2), offset: (-acc * C).toFixed(2) };
+      acc += frac;
+      return seg;
+    });
+  }
+
+  layout(mob) {
+    return mob ? {
+      frameW: '390px', frameM: '64px auto 40px', frameR: '40px', frameB: '1px solid rgba(255,255,255,0.16)', frameBg: 'rgba(3,5,26,0.35)', escW: '46px', escH: '55px', datoCols: 'minmax(0, 1fr)', focoH: '96px',
+      heroH: '440px', heroPad: '22px 20px 28px', h1: '96px', kicker: '11px', pagePad: '0 16px',
+      tilesCols: 'repeat(3, minmax(0, 1fr))', tileH: '150px', tilePad: '14px 12px', iconBox: '50px', iconF: '24px', tileF: '15px', tileSub: 'none',
+      recF: '30px', secPadL: '44px', lineX: '14px', nodeLeft: '-45px', node: '30px', nodeF: '11px',
+      h2: '30px', datoF: '54px', datoPad: '30px 20px 40px', cardPad: '22px 16px', pie: '250px', pieH: '200px', centroF: '52px', pieGap: '20px',
+      itemCols: 'minmax(0, 1fr) 64px auto', vsCols: 'minmax(0, 1fr)', vsH: '190px', cylW: '52px', compGrid: 'minmax(0, 1fr)',
+      conclCols: 'minmax(0, 1fr)', compCols: '62px minmax(0, 1fr)', tubeH: '30px', colH: '220px', colGap: '8px', colValF: '10px',
+      histCols: '86px minmax(0, 1fr) auto', gapSec: '84px'
+    } : {
+      frameW: '100%', frameM: '0', frameR: '0', frameB: '0', frameBg: 'transparent', escW: '74px', escH: '89px', datoCols: 'minmax(0, 1.25fr) minmax(0, 1fr)', focoH: '160px',
+      heroH: '540px', heroPad: '36px 56px 64px', h1: '190px', kicker: '14px', pagePad: '0 56px',
+      tilesCols: 'repeat(3, minmax(0, 1fr))', tileH: '320px', tilePad: '30px', iconBox: '104px', iconF: '50px', tileF: '40px', tileSub: 'block',
+      recF: '64px', secPadL: '108px', lineX: '30px', nodeLeft: '-102px', node: '48px', nodeF: '14px',
+      h2: '58px', datoF: '150px', datoPad: '64px 56px 84px', cardPad: '44px 48px', pie: '480px', pieH: '380px', centroF: '104px', pieGap: '56px',
+      itemCols: 'minmax(0, 320px) 1fr 120px', vsCols: 'repeat(3, minmax(0, 1fr))', vsH: '280px', cylW: '76px', compGrid: 'repeat(2, minmax(0, 1fr))',
+      conclCols: 'repeat(3, minmax(0, 1fr))', compCols: '120px minmax(0, 1fr)', tubeH: '44px', colH: '320px', colGap: '28px', colValF: '15px',
+      histCols: 'minmax(0, 220px) 1fr 140px', gapSec: '150px'
+    };
+  }
+
+  fxLoop() {
+    const st = [];
+    for (let i = 0; i < 260; i++) st.push({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: Math.random(), s: Math.random() });
+    this._stars = st;
+    this._rgbNow = [210, 216, 240];
+    const step = now => {
+      this._raf = requestAnimationFrame(step);
+      const cv = this._cv;
+      if (!cv || document.hidden) return;
+      const w = cv.clientWidth, hg = cv.clientHeight;
+      if (!w || !hg) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(hg * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(hg * dpr); }
+      const ctx = cv.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, hg);
+      const tg = (this._fxRGB || '210,216,240').split(',').map(Number), c = this._rgbNow;
+      for (let i = 0; i < 3; i++) c[i] += (tg[i] - c[i]) * 0.05;
+      const rgb = c.map(Math.round).join(',');
+      const t = this._quieto ? 8 : now / 1000;
+      const intro = Math.max(0, Math.min(1, (now - (this._fxT0 || 0)) / 1500)), e = Math.max(0.001, 1 - Math.pow(1 - intro, 3));
+      const mx = typeof this._mx === 'number' ? this._mx : 0.5, my = typeof this._my === 'number' ? this._my : 0.5;
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalAlpha = e;
+      const fn = this['fx_' + (this._fxMode || 'esfera')] || this.fx_esfera;
+      ctx.save(); ctx.translate(w / 2, hg / 2); const sc = 1.25 - 0.25 * e; ctx.scale(sc, sc); ctx.translate(-w / 2, -hg / 2);
+      fn.call(this, ctx, w, hg, t, rgb, mx, my);
+      ctx.restore();
+      ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+      if (intro < 1) {
+        const R = Math.max(1, Math.hypot(w, hg) * e);
+        const g = ctx.createRadialGradient(w / 2, hg * 0.45, Math.max(0, R * 0.55), w / 2, hg * 0.45, R);
+        g.addColorStop(0, 'rgba(' + rgb + ',0)'); g.addColorStop(0.85, 'rgba(' + rgb + ',' + (0.45 * (1 - e)).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, w, hg);
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    };
+    this._raf = requestAnimationFrame(step);
+  }
+
+  fx_glow(ctx, x, y, r, rgb, a) {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, 'rgba(' + rgb + ',' + a + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+    ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  }
+
+  fx_tunel(ctx, w, h, t, rgb, mx, my) {
+    const cx = w * (0.5 + (mx - 0.5) * 0.18), cy = h * (0.44 + (my - 0.5) * 0.18), R = Math.hypot(w, h) * 0.8;
+    this.fx_glow(ctx, cx, cy, R * 0.32, rgb, 0.4);
+    for (let k = 0; k < 28; k++) {
+      const a = k / 28 * Math.PI * 2 + t * 0.04;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R * 0.62);
+      ctx.strokeStyle = 'rgba(' + rgb + ',0.07)'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    const N = 18;
+    for (let i = 0; i < N; i++) {
+      const z = (i / N + t * 0.085) % 1, r = Math.pow(z, 2.3) * R, al = Math.sin(z * Math.PI) * 0.9;
+      ctx.beginPath(); ctx.ellipse(cx - (mx - 0.5) * 220 * z, cy - (my - 0.5) * 160 * z, Math.max(0.1, r), Math.max(0.1, r * 0.62), 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + al.toFixed(3) + ')'; ctx.lineWidth = 1 + z * 6;
+      ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = 30 * z; ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+  }
+
+  fx_ondas(ctx, w, h, t, rgb, mx) {
+    const base = h * 0.5, amp = h * 0.14;
+    const g = ctx.createLinearGradient(0, base - amp, 0, h);
+    g.addColorStop(0, 'rgba(' + rgb + ',0.22)'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+    ctx.fillStyle = g; ctx.fillRect(0, base - amp, w, h);
+    for (let k = 0; k < 11; k++) {
+      ctx.beginPath();
+      for (let x = 0; x <= w + 8; x += 8) {
+        const d = Math.exp(-Math.pow((x / w - mx) * 3.2, 2));
+        const y = base + k * h * 0.03 + Math.sin(x * 0.0032 + t * 0.85 + k * 0.5) * amp * (1 + d * 0.9) + Math.sin(x * 0.0095 - t * 1.25 + k) * amp * 0.3;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + (0.95 - k * 0.075).toFixed(3) + ')'; ctx.lineWidth = k === 0 ? 3.5 : 1.4;
+      ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = k < 3 ? 26 : 6; ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+  }
+
+  fx_grilla(ctx, w, h, t, rgb, mx) {
+    const hz = h * 0.54, vx = w * (0.5 + (mx - 0.5) * 0.35), sr = Math.min(w, h) * 0.24, sy = hz - sr * 0.3;
+    this.fx_glow(ctx, vx, sy, sr * 2.6, rgb, 0.5);
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, w, hz); ctx.clip();
+    const sg = ctx.createLinearGradient(0, sy - sr, 0, sy + sr);
+    sg.addColorStop(0, 'rgba(255,255,255,0.95)'); sg.addColorStop(0.5, 'rgba(' + rgb + ',0.95)'); sg.addColorStop(1, 'rgba(' + rgb + ',0.5)');
+    ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(vx, sy, sr, 0, Math.PI * 2); ctx.fill();
+    ctx.globalCompositeOperation = 'destination-out';
+    for (let i = 0; i < 9; i++) { const yy = sy + ((i / 9 + t * 0.05) % 1) * sr; ctx.fillRect(vx - sr, yy, sr * 2, 2 + ((yy - sy) / sr) * 9); }
+    ctx.restore(); ctx.globalCompositeOperation = 'lighter';
+    for (let i = -30; i <= 30; i++) {
+      ctx.beginPath(); ctx.moveTo(vx + i * 4, hz); ctx.lineTo(vx + i * w * 0.14, h);
+      ctx.strokeStyle = 'rgba(' + rgb + ',0.32)'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    for (let j = 0; j < 24; j++) {
+      const z = ((j + t * 1.6) % 24) / 24, y = hz + (h - hz) * Math.pow(z, 2.4);
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y);
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + (0.12 + z * 0.65).toFixed(3) + ')'; ctx.lineWidth = 0.5 + z * 2; ctx.stroke();
+    }
+    const hg = ctx.createLinearGradient(0, hz - 30, 0, hz + 30);
+    hg.addColorStop(0, 'rgba(' + rgb + ',0)'); hg.addColorStop(0.5, 'rgba(' + rgb + ',0.8)'); hg.addColorStop(1, 'rgba(' + rgb + ',0)');
+    ctx.fillStyle = hg; ctx.fillRect(0, hz - 30, w, 60);
+  }
+
+  fx_orbitas(ctx, w, h, t, rgb, mx, my) {
+    const cx = w * 0.5 + (mx - 0.5) * 60, cy = h * 0.45 + (my - 0.5) * 40, R = Math.min(w, h) * 0.2;
+    for (const s of this._stars) {
+      const a = 0.15 + 0.7 * Math.abs(Math.sin(t * 1.4 + s.s * 12));
+      ctx.fillStyle = 'rgba(' + rgb + ',' + a.toFixed(3) + ')'; ctx.fillRect((s.x * 0.5 + 0.5) * w, (s.y * 0.5 + 0.5) * h, 1.6, 1.6);
+    }
+    this.fx_glow(ctx, cx, cy, R * 3, rgb, 0.35);
+    const orb = (front) => {
+      for (let k = 0; k < 4; k++) {
+        const tilt = -0.42 + k * 0.28 + Math.sin(t * 0.2 + k) * 0.08, rx = R * (1.6 + k * 0.5), ry = rx * 0.26;
+        ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, tilt, front ? 0 : Math.PI, front ? Math.PI : Math.PI * 2);
+        ctx.strokeStyle = 'rgba(' + rgb + ',' + (front ? 0.6 : 0.25) + ')'; ctx.lineWidth = front ? 1.6 : 1; ctx.stroke();
+        for (let d = 0; d < 3; d++) {
+          const th = t * (0.7 - k * 0.12) + d * 2.1 + k;
+          if ((Math.sin(th) >= 0) !== front) continue;
+          const x = cx + rx * Math.cos(th) * Math.cos(tilt) - ry * Math.sin(th) * Math.sin(tilt);
+          const y = cy + rx * Math.cos(th) * Math.sin(tilt) + ry * Math.sin(th) * Math.cos(tilt);
+          this.fx_glow(ctx, x, y, 22, rgb, 0.9);
+          ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+    };
+    orb(false);
+    ctx.globalCompositeOperation = 'source-over';
+    const sp = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
+    sp.addColorStop(0, '#0a0f30'); sp.addColorStop(0.72, '#050822'); sp.addColorStop(0.93, 'rgba(' + rgb + ',0.55)'); sp.addColorStop(1, 'rgba(' + rgb + ',0.95)');
+    ctx.fillStyle = sp; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(' + rgb + ',0.9)'; ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = 30; ctx.stroke(); ctx.shadowBlur = 0;
+    orb(true);
+  }
+
+  fx_barras(ctx, w, h, t, rgb, mx, my) {
+    const n = Math.max(16, Math.round(w / 40)), bw = w / n;
+    const b1 = w * (0.3 + 0.22 * Math.sin(t * 0.35)), b2 = w * (0.72 + 0.18 * Math.sin(t * 0.27 + 2)), b3 = mx * w;
+    const y1 = h * (0.3 + 0.1 * Math.sin(t * 0.4)), y2 = h * (0.62 + 0.1 * Math.cos(t * 0.33)), y3 = my * h;
+    for (let i = 0; i < n; i++) {
+      const x = i * bw + bw / 2;
+      const g1 = Math.exp(-Math.pow((x - b1) / (w * 0.13), 2)), g2 = Math.exp(-Math.pow((x - b2) / (w * 0.17), 2)), g3 = Math.exp(-Math.pow((x - b3) / (w * 0.07), 2)) * 0.8;
+      const gr = ctx.createLinearGradient(0, 0, 0, h);
+      for (let q = 0; q <= 10; q++) {
+        const y = q / 10 * h;
+        const v = g1 * Math.exp(-Math.pow((y - y1) / (h * 0.2), 2)) + g2 * Math.exp(-Math.pow((y - y2) / (h * 0.26), 2)) + g3 * Math.exp(-Math.pow((y - y3) / (h * 0.18), 2));
+        gr.addColorStop(q / 10, 'rgba(' + rgb + ',' + Math.min(0.95, v).toFixed(3) + ')');
+      }
+      ctx.fillStyle = gr; ctx.fillRect(i * bw, 0, bw + 1, h);
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    const rib = ctx.createLinearGradient(0, 0, bw, 0);
+    rib.addColorStop(0, 'rgba(3,5,26,0.55)'); rib.addColorStop(0.45, 'rgba(3,5,26,0)'); rib.addColorStop(0.55, 'rgba(255,255,255,0.05)'); rib.addColorStop(1, 'rgba(3,5,26,0.5)');
+    ctx.fillStyle = rib;
+    for (let i = 0; i < n; i++) { ctx.save(); ctx.translate(i * bw, 0); ctx.fillRect(0, 0, bw, h); ctx.restore(); }
+    ctx.globalCompositeOperation = 'lighter';
+  }
+
+  fx_arcos(ctx, w, h, t, rgb, mx, my) {
+    const cx = w * (0.5 + (mx - 0.5) * 0.22);
+    this.fx_glow(ctx, cx, h * 0.62, Math.min(w, h) * 0.75, rgb, 0.3);
+    for (let k = 0; k < 9; k++) {
+      const yv = h * (0.6 + k * 0.045) + Math.sin(t * 0.6 + k * 0.5) * h * 0.015;
+      const half = w * (0.18 + k * 0.11) * (1 + 0.05 * Math.sin(t * 0.7 + k * 0.4));
+      const a = yv / (half * half);
+      ctx.beginPath();
+      for (let x = -20; x <= w + 20; x += 10) { const y = yv - a * Math.pow(x - cx, 2); if (x === -20) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      if (k === 0) {
+        ctx.save(); ctx.lineTo(w + 20, -10); ctx.lineTo(-20, -10); ctx.closePath();
+        const g = ctx.createLinearGradient(0, 0, 0, yv);
+        g.addColorStop(0, 'rgba(' + rgb + ',0)'); g.addColorStop(1, 'rgba(' + rgb + ',0.35)');
+        ctx.fillStyle = g; ctx.fill(); ctx.restore();
+        ctx.beginPath();
+        for (let x = -20; x <= w + 20; x += 10) { const y = yv - a * Math.pow(x - cx, 2); if (x === -20) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      }
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + (0.95 - k * 0.09).toFixed(3) + ')'; ctx.lineWidth = k === 0 ? 3.5 : 1.6;
+      ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = k < 3 ? 30 : 10; ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+  }
+
+  fx_capas(ctx, w, h, t, rgb, mx, my) {
+    const edge = (k, x) => h * (0.12 + k * 0.23) + Math.sin(x / w * Math.PI * 1.1 + t * 0.45 + k * 0.9) * h * 0.035 - (x / w) * h * 0.06 + (my - 0.5) * h * 0.04 * (k + 1);
+    for (let k = 0; k < 4; k++) {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 10) { const y = edge(k, x); if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+      const y0 = edge(k, w * 0.5);
+      const g = ctx.createLinearGradient(0, y0 - h * 0.04, 0, y0 + h * 0.2);
+      g.addColorStop(0, 'rgba(' + rgb + ',0.55)'); g.addColorStop(0.35, 'rgba(8,10,34,0.92)'); g.addColorStop(1, 'rgba(3,5,26,0.98)');
+      ctx.fillStyle = g; ctx.fill();
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 10) { const y = edge(k, x); if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.strokeStyle = 'rgba(' + rgb + ',0.95)'; ctx.lineWidth = 3;
+      ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = 28; ctx.stroke(); ctx.shadowBlur = 0;
+      this.fx_glow(ctx, mx * w, edge(k, mx * w), Math.min(w, h) * 0.18, rgb, 0.35);
+    }
+  }
+
+  fx_esfera(ctx, w, h, t, rgb, mx, my) {
+    const cx = w * 0.5 + (mx - 0.5) * 60, cy = h * 0.44 + (my - 0.5) * 40, R = Math.min(w, h) * 0.25;
+    for (let k = 0; k < 5; k++) {
+      const z = (t * 0.16 + k / 5) % 1;
+      ctx.beginPath(); ctx.arc(cx, cy, R * (1 + z * 2.8), 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + ((1 - z) * 0.65).toFixed(3) + ')'; ctx.lineWidth = 2 + (1 - z) * 7;
+      ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = 34; ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+    this.fx_glow(ctx, cx, cy, R * 1.5, rgb, 0.4);
+    for (let k = 0; k < 14; k++) {
+      const ph = k / 14 * Math.PI + t * 0.35, rx = Math.abs(Math.cos(ph)) * R;
+      ctx.beginPath(); ctx.ellipse(cx, cy, Math.max(0.1, rx), R, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + (0.12 + 0.5 * Math.abs(Math.sin(ph))).toFixed(3) + ')'; ctx.lineWidth = 1.2; ctx.stroke();
+    }
+    for (let k = 1; k < 7; k++) {
+      const yy = -R + k * (2 * R / 7), rr = Math.sqrt(R * R - yy * yy);
+      ctx.beginPath(); ctx.ellipse(cx, cy + yy, rr, rr * 0.16, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + rgb + ',0.22)'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(' + rgb + ',0.95)'; ctx.lineWidth = 2.2;
+    ctx.shadowColor = 'rgba(' + rgb + ',1)'; ctx.shadowBlur = 28; ctx.stroke(); ctx.shadowBlur = 0;
+  }
+
+  fx_warp(ctx, w, h, t, rgb, mx, my) {
+    const cx = w * (0.5 + (mx - 0.5) * 0.25), cy = h * (0.45 + (my - 0.5) * 0.25);
+    this.fx_glow(ctx, cx, cy, Math.min(w, h) * 0.5, rgb, 0.35);
+    for (const s of this._stars) {
+      if (!this._quieto) s.z -= 0.006;
+      if (s.z <= 0.03) { s.z = 1; s.x = Math.random() * 2 - 1; s.y = Math.random() * 2 - 1; }
+      const k1 = 0.3 / s.z, k2 = 0.3 / (s.z + 0.05);
+      const x1 = cx + s.x * w * k1 * 0.5, y1 = cy + s.y * h * k1 * 0.5, x2 = cx + s.x * w * k2 * 0.5, y2 = cy + s.y * h * k2 * 0.5;
+      ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x1, y1);
+      ctx.strokeStyle = 'rgba(' + rgb + ',' + Math.min(1, (1 - s.z) * 1.4).toFixed(3) + ')'; ctx.lineWidth = (1 - s.z) * 2.8; ctx.stroke();
+    }
+  }
+
+  fondo(A) {
+    const h = React.createElement;
+    const blob = (k, st) => h('div', { key: k, style: Object.assign({ position: 'absolute', borderRadius: '50%', filter: 'blur(70px)', transition: 'background 1.6s ease' }, st) });
+    const ring = (k, d) => h('div', { key: k, style: { position: 'absolute', left: '50%', top: '18%', width: '120vmax', height: '120vmax', borderRadius: '50%',
+      border: '2px solid rgba(' + A.rgb + ',0.55)', boxShadow: '0 0 60px rgba(' + A.rgb + ',0.45), inset 0 0 60px rgba(' + A.rgb + ',0.35)',
+      animation: 'ondas 12s linear ' + d + 's infinite', opacity: 0, transition: 'border-color 1.6s, box-shadow 1.6s' } });
+    const curva = (k, d, o) => h('path', { key: k, d, fill: 'none', stroke: 'rgba(' + A.rgb + ',' + o + ')', strokeWidth: 2, style: { transition: 'stroke 1.6s' } });
+    return h('div', { style: { position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none', background: '#03051a' } },
+      blob('a', { width: '70vw', height: '70vw', left: '-18vw', top: '-22vw', background: 'radial-gradient(circle, rgba(' + A.rgb + ',0.55), transparent 62%)', animation: 'flotarA 24s ease-in-out infinite' }),
+      blob('b', { width: '60vw', height: '60vw', right: '-20vw', top: '28vh', background: 'radial-gradient(circle, rgba(' + A.rgb2 + ',0.42), transparent 62%)', animation: 'flotarB 30s ease-in-out infinite' }),
+      blob('c', { width: '46vw', height: '46vw', left: '22vw', bottom: '-24vw', background: 'radial-gradient(circle, rgba(' + A.rgb + ',0.35), transparent 62%)', animation: 'flotarC 36s ease-in-out infinite' }),
+      ring('r1', 0), ring('r2', 4), ring('r3', 8),
+      h('svg', { key: 'cv', viewBox: '0 0 1440 900', preserveAspectRatio: 'none', style: { position: 'absolute', left: 0, right: 0, bottom: 0, width: '100%', height: '70vh', filter: 'blur(1.5px) drop-shadow(0 0 14px rgba(' + A.rgb + ',0.8))', animation: 'respirar 9s ease-in-out infinite' } },
+        curva('p1', 'M0 520 C 420 860, 1020 860, 1440 520', 0.8), curva('p2', 'M0 640 C 480 900, 960 900, 1440 640', 0.5), curva('p3', 'M-100 420 C 420 820, 1020 820, 1540 420', 0.3)),
+      h('div', { key: 'rib', style: { position: 'absolute', inset: 0, background: 'repeating-linear-gradient(90deg, rgba(3,5,26,0.5) 0px, rgba(255,255,255,0.025) 24px, rgba(3,5,26,0.5) 48px)' } }),
+      h('div', { key: 'vig', style: { position: 'absolute', inset: 0, background: 'radial-gradient(120% 80% at 50% 40%, transparent 40%, rgba(3,5,26,0.85) 100%)' } }));
+  }
+
+  renderVals() {
+    const S = this.state;
+    const COL = {
+      diseno: { c: '#3d7bff', rgb: '61,123,255', rgb2: '110,70,255', light: '#a9c3ff',
+        pal: ['#3d7bff', '#a9c3ff', '#1d43b8', '#dbe6ff', '#5d6b99', '#2a3358'], hist: ['#16245e', '#1d3a99', '#2c5ae0', '#5f8cff', '#a9c3ff'] },
+      fotografia: { c: '#ff6e00', rgb: '255,110,0', rgb2: '255,40,70', light: '#ffb27a',
+        pal: ['#ff6e00', '#ffc08f', '#b34a00', '#ffe2cc', '#8a6a5a', '#3a2a24'], hist: ['#4a1d00', '#8a3600', '#d65a00', '#ff8a33', '#ffc08f'] },
+      produccion: { c: '#7b4ad6', rgb: '123,74,214', rgb2: '61,90,255', light: '#c4a8ff',
+        pal: ['#7b4ad6', '#c4a8ff', '#4b2a99', '#e6dbff', '#6a628a', '#2e2648'], hist: ['#24124d', '#3d2380', '#5d38b8', '#8f68ee', '#cbb5ff'] }
+    };
+    const K = S.area || 'diseno';
+    const A = S.area ? COL[K] : { c: '#e8ebf7', rgb: '200,206,228', rgb2: '170,178,205', light: '#ffffff', pal: ['#ffffff', '#c9cfe0', '#8a93b0', '#e9ecf5', '#5a6280', '#2a2f45'], hist: ['#2a2f45', '#5a6280', '#8a93b0', '#c9cfe0', '#ffffff'] };
+    this._pal = A.pal; this._hist = A.hist;
+    const v = this.baseVals();
+    const h = React.createElement;
+    v.A = A;
+    this._fxRGB = S.area ? A.rgb : '225,230,248';
+    if (!this._heroEl) this._heroEl = h('canvas', { ref: el => { this._cv = el; }, style: { position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' } });
+    v.heroFx = this._heroEl;
+    const mob = S.vista === 'mobile';
+    if (!this._esc || this._escMob !== mob) {
+      this._escMob = mob;
+      const W = mob ? '64px' : '108px', H = mob ? '77px' : '130px';
+      const mask = { WebkitMaskImage: 'url(' + ESCUDO + ')', maskImage: 'url(' + ESCUDO + ')', WebkitMaskSize: 'contain', maskSize: 'contain', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskPosition: 'center' };
+      this._esc = h('div', { style: { position: 'relative', flex: 'none', width: W, height: H, filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.5))' } },
+        h('img', { src: ESCUDO, alt: 'Escudo del Club Atlético Talleres', style: { position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'escudoVidrio 10s ease-in-out infinite' } }),
+        h('div', { style: Object.assign({ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.08) 55%, rgba(255,255,255,0.3))', animation: 'escudoCapa 10s ease-in-out infinite', opacity: 0 }, mask) }),
+        h('div', { style: Object.assign({ position: 'absolute', inset: 0, background: 'linear-gradient(115deg, rgba(255,255,255,0) 35%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 65%)', backgroundSize: '300% 100%', animation: 'escudoBrillo 10s ease-in-out infinite' }, mask) }));
+    }
+    v.escudo = this._esc;
+    v.orbita = h('div', { style: { position: 'absolute', inset: '-7%', borderRadius: '50%', border: '1px dashed rgba(' + A.rgb + ',0.45)', animation: 'girar 7s linear infinite', pointerEvents: 'none' } },
+      h('div', { style: { position: 'absolute', left: '50%', top: '-7px', width: '14px', height: '14px', marginLeft: '-7px', borderRadius: '50%', background: '#ffffff', boxShadow: '0 0 22px 8px ' + A.c } }));
+    v.fondo = this.fondo(A);
+    v.pulso = h('div', { style: { position: 'absolute', left: '-5px', width: '12px', height: '160px', borderRadius: '6px', background: 'linear-gradient(180deg, transparent, #ffffff, ' + A.c + ', transparent)', boxShadow: '0 0 24px ' + A.c, animation: 'recorrer 5s linear infinite' } });
+    v.barrido = h('div', { style: { position: 'absolute', top: 0, bottom: 0, width: '40%', left: '-45%', pointerEvents: 'none', background: 'linear-gradient(100deg, transparent, rgba(255,255,255,0.10), transparent)', animation: 'barrido 7s ease-in-out infinite' } });
+    v.vistas = (v.vistas || []).map(x => {
+      const sel = (x.label === 'Mobile') === (S.vista === 'mobile');
+      return { ...x, bg: sel ? 'rgba(255,255,255,0.16)' : 'transparent', fg: sel ? '#f4f6ff' : '#9aa3c0', bc: sel ? 'rgba(255,255,255,0.3)' : 'transparent' };
+    });
+    if (!window.DATOS) return v;
+    const L = v.L;
+    const mesTxt = v.heroMes || '';
+    const MAPA = { Abril: 'tunel', Mayo: 'ondas', Junio: 'arcos', Julio: 'capas', Agosto: 'barras', Septiembre: 'esfera' };
+    const MODOS = ['tunel', 'ondas', 'arcos', 'capas', 'barras', 'esfera'];
+    const modoFx = v.esHistorico ? 'warp' : (MAPA[mesTxt] || MODOS[mesTxt.length % 6]);
+    if (modoFx !== this._fxMode) { this._fxMode = modoFx; this._fxT0 = performance.now(); }
+    v.h1Size = 'min(' + L.h1 + ', ' + (100 / (Math.max(5, mesTxt.length) * 0.72)).toFixed(1) + 'cqw)';
+    v.chipsMes = (v.chipsMes || []).map(c => {
+      const sel = !v.esHistorico && c.label === mesTxt;
+      return { ...c, bg: sel ? 'rgba(' + A.rgb + ',0.32)' : 'rgba(255,255,255,0.06)', fg: '#f4f6ff',
+        bc: sel ? A.c : 'rgba(255,255,255,0.18)', sh: sel ? '0 0 28px rgba(' + A.rgb + ',0.6), inset 0 1px 0 rgba(255,255,255,0.3)' : 'inset 0 1px 0 rgba(255,255,255,0.12)' };
+    });
+    const KEYS = ['diseno', 'fotografia', 'produccion'];
+    const SUB = { diseno: 'Ocupación del equipo por área', fotografia: 'Fotos pedidas por área', produccion: 'Gasto de producción por área' };
+    const ICO = { diseno: 'ph-fill ph-pen-nib', fotografia: 'ph-fill ph-camera', produccion: 'ph-fill ph-cube' };
+    v.areaBtns = (v.areaBtns || []).map((t, i) => {
+      const k = KEYS[i], C = COL[k], sel = S.area === k, otro = S.area && !sel;
+      return { ...t, c: C.c, rgb: C.rgb, icon: ICO[k], sub: SUB[k],
+        bd: sel ? C.c : 'rgba(255,255,255,0.12)',
+        sh: sel ? '0 0 0 1px ' + C.c + ', 0 40px 90px -20px rgba(' + C.rgb + ',0.75), inset 0 1px 0 rgba(255,255,255,0.25)' : '0 30px 60px -24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15)',
+        lift: sel ? 'translateY(-10px) scale(1.02)' : (otro ? 'scale(0.97)' : 'none'),
+        glowO: sel ? '0.95' : (otro ? '0.25' : '0.55'),
+        anim: sel ? 'flotarIcono 3.2s ease-in-out infinite' : 'none' };
+    });
+    const nombreArea = { diseno: 'Diseño', fotografia: 'Fotografía', produccion: 'Producción' }[K];
+    v.recTitulo = nombreArea + (v.esHistorico ? ' · Histórico' : ' · ' + mesTxt);
+    v.histBg = v.esHistorico ? 'rgba(' + A.rgb + ',0.30)' : 'rgba(255,255,255,0.07)';
+    v.histBd = v.esHistorico ? A.c : 'rgba(255,255,255,0.2)';
+    v.salir = () => this.setState({ area: null, modo: 'mensual', hov: null, completo: false, histTodas: false });
+    v.completoIco = S.completo ? 'ph ph-minus' : 'ph ph-plus';
+    const foto = !!v.esFoto;
+    v.n = { dato: '01', top: '02', des: '03', vs: '04', comp: foto ? '05' : '04', concl: foto ? '06' : '05' };
+    v.capas = [9, 8, 7, 6, 5, 4, 3, 2, 1].map(i => ({ z: -i * 3.2, f: 'brightness(' + (0.62 - i * 0.04).toFixed(2) + ') saturate(1.2)' }));
+    const t5 = v.top5 || [];
+    v.top5 = t5.map((x, i) => {
+      const on = S.hov === i;
+      const C = 2 * Math.PI * 60, mid = ((-parseFloat(x.offset) || 0) / C + parseFloat(x.dash) / C / 2) * Math.PI * 2;
+      const ex = on && S.hovSrc === 'lista';
+      return { ...x, op: S.hov === null || on ? 1 : 0.3, sw: ex ? 56 : 34, ow: (ex ? 56 : 34) + 7, oo: on ? 1 : 0,
+        onDisco: () => this.setState({ hov: i, hovSrc: 'disco' }),
+        tr: ex ? 'translate(' + (Math.cos(mid) * 15).toFixed(1) + 'px, ' + (Math.sin(mid) * 15).toFixed(1) + 'px)' : 'translate(0px, 0px)',
+        tip: x.name + '|' + x.pct + '% del total' + (x.val ? '|' + x.val : ''),
+        onEnter: () => this.setState({ hov: i, hovSrc: 'lista' }), onLeave: () => this.setState({ hov: null }),
+        rowBg: on ? 'rgba(' + A.rgb + ',0.16)' : 'rgba(255,255,255,0.025)',
+        rowBd: on ? 'rgba(' + A.rgb + ',0.6)' : 'rgba(255,255,255,0.06)', rowT: on ? 'translateX(8px)' : 'none' };
+    });
+    const foco = t5[S.hov === null ? 0 : S.hov];
+    v.centroPct = foco ? foco.pct + '%' : '';
+    v.centroName = foco ? foco.name : '';
+    v.centroVal = foco ? foco.val : '';
+    const largo = Math.max(4, ...String(v.datoValor || '').split(/\s+/).map(p => p.length));
+    v.datoSize = 'min(' + L.datoF + ', ' + (100 / (largo * 0.66)).toFixed(1) + 'cqw)';
+    v.discoGlow = S.hov === null ? 0.6 : 1;
+    const t3 = t5.filter(x => x.name !== 'Otras áreas').slice(0, 3), t3max = Math.max(1, ...t3.map(x => x.raw || x.pct));
+    v.top3 = t3.map(x => ({ name: x.name, pct: x.pct + '%', w: ((x.raw || x.pct) / t3max) * 100,
+      tip: x.name + '|' + x.pct + '% del total' + (x.val ? '|' + x.val : '') }));
+    const ICOS = ['ph-fill ph-trend-up', 'ph-fill ph-repeat', 'ph-fill ph-lightning'];
+    v.conclusionesArea = (v.conclusionesArea || []).map((it, i) => ({ ...it, rot: [-2.2, 1.6, -1.1][i % 3], ico: ICOS[i % 3] }));
+    return v;
+  }
+
+  baseVals() {
+    const D = window.DATOS;
+    const S = this.state;
+    const L = this.layout(S.vista === 'mobile');
+    const vistas = [{ k: 'escritorio', label: 'Escritorio' }, { k: 'mobile', label: 'Mobile' }].map(v => {
+      const sel = v.k === S.vista;
+      return { label: v.label, onClick: () => this.setState({ vista: v.k }),
+        bg: sel ? 'var(--color-azul)' : 'transparent', fg: sel ? '#ffffff' : 'var(--color-neutral-300)',
+        bc: sel ? 'var(--color-azul)' : 'rgba(15,26,58,0.18)' };
+    });
+    if (!D) return { L, vistas };
+
+    const AREAS = [{ key: 'diseno', label: 'Diseño' }, { key: 'fotografia', label: 'Fotografía' }, { key: 'produccion', label: 'Producción' }];
+    const series = {};
+    AREAS.forEach(a => { series[a.key] = this.serie(D, a.key); });
+    const ORD = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const universo = [];
+    Object.values(series).forEach(sr => sr.forEach(m => { if (!universo.find(u => u.key === m.key)) universo.push({ key: m.key, label: m.label }); }));
+    universo.sort((a, b) => ORD.indexOf(a.key) - ORD.indexOf(b.key));
+    const mes = S.mes || universo[universo.length - 1].key;
+    const mesLabel = universo.find(u => u.key === mes).label;
+    const esHist = S.modo === 'historico';
+    const F = { diseno: v => this.fmt(v), fotografia: v => this.fmt(v) + ' fotos', produccion: v => this.plata(v) };
+    const desc = (a, b) => b.total - a.total;
+    const principal = (k, M) => (k === 'diseno' ? M.areas.filter(a => a.name !== 'BRANDING') : M.areas).slice().sort(desc)[0];
+    const elegido = S.area;
+    const K = elegido || 'diseno';
+    const areaLabel = AREAS.find(a => a.key === K).label;
+
+    const areaBtns = AREAS.map(a => {
+      const sel = a.key === elegido;
+      const meta = { diseno: ['ph ph-pen-nib', 'Piezas gráficas por área'], fotografia: ['ph ph-camera', 'Fotos pedidas por área'], produccion: ['ph ph-printer', 'Gasto de producción por área'] }[a.key];
+      return { label: a.label, onClick: () => this.setState({ area: a.key, completo: false, histTodas: false }),
+        icon: meta[0], sub: meta[1],
+        bg: sel ? 'var(--color-azul)' : '#ffffff', fg: sel ? '#ffffff' : 'var(--color-text)',
+        bc: sel ? 'var(--color-azul)' : '#e3e6ec',
+        sh: sel ? '0 10px 24px rgba(7,21,108,0.25)' : '0 1px 2px rgba(15,26,58,0.05)',
+        iconColor: sel ? 'var(--color-naranja)' : 'var(--color-azul)',
+        subFg: sel ? '#d9dde4' : 'var(--color-neutral-500)' };
+    });
+
+    const areaInfo = AREAS.map(a => {
+      const sr = series[a.key];
+      const M = sr.find(m => m.key === mes);
+      const sel = a.key === elegido;
+      let datoLabel, valor, nota;
+      if (esHist) {
+        datoLabel = a.key === 'produccion' ? 'Gasto acumulado' : a.key === 'fotografia' ? 'Fotos acumuladas' : 'Demanda acumulada';
+        valor = F[a.key](sr.reduce((s, m) => s + m.total, 0));
+        nota = sr[0].label + (sr.length > 1 ? ' a ' + sr[sr.length - 1].label : '') + ' · ' + sr.length + (sr.length === 1 ? ' mes' : ' meses');
+      } else {
+        datoLabel = a.key === 'diseno' ? 'Principal demandante' : a.key === 'fotografia' ? 'Fotos necesarias' : 'Área que más gastó';
+        if (!M) { valor = 'Sin registro'; nota = 'No hay datos de ' + mesLabel; }
+        else if (a.key === 'fotografia') { valor = this.fmt(M.total); nota = M.areas.length + ' áreas pidieron fotos'; }
+        else { const p = principal(a.key, M); valor = p.name; nota = F[a.key](p.total) + ' · ' + Math.round((p.total / M.total) * 100) + '% del mes'; }
+      }
+      return { label: a.label, datoLabel, valor, nota,
+        bc: sel ? 'var(--color-naranja)' : 'rgba(15,26,58,0.14)',
+        labelColor: sel ? 'var(--color-naranja)' : 'var(--color-neutral-300)' };
+    });
+
+    const modos = [
+      { k: 'mensual', label: 'Comparativa mensual', sub: 'El informe de ' + mesLabel + ', área por área' },
+      { k: 'historico', label: 'Histórico', sub: 'Todos los meses relevados, en barras' }
+    ].map(m => {
+      const sel = m.k === S.modo;
+      return { label: m.label, sub: m.sub, onClick: () => this.setState({ modo: m.k }),
+        bg: sel ? 'var(--color-azul)' : 'var(--color-surface)', bc: sel ? 'var(--color-naranja)' : 'rgba(15,26,58,0.22)',
+        fg: 'var(--color-text)', subFg: sel ? 'var(--color-accent-300)' : 'var(--color-neutral-500)',
+        dot: sel ? 'var(--color-naranja)' : 'transparent' };
+    });
+
+    const chipsMes = universo.map(u => {
+      const sel = u.key === mes && !esHist;
+      const tiene = !elegido || !!series[K].find(m => m.key === u.key);
+      return { label: u.label, onClick: () => this.setState({ mes: u.key, modo: 'mensual', completo: false }),
+        bg: sel ? '#ffffff' : 'rgba(10,12,24,0.55)',
+        fg: sel ? '#07156c' : (tiene ? '#f2f5fa' : '#aab1bf'),
+        bc: sel ? '#ffffff' : 'rgba(255,255,255,0.35)' };
+    });
+
+    const SER = series[K];
+    const M = SER.find(m => m.key === mes);
+    const out = {};
+    if (M) {
+      const Fm = K === 'diseno' ? v => this.pctTxt(v, M.total) : F[K];
+      const top5 = this.torta(M.areas.map(a => [a.name, a.total]), M.total, K === 'diseno' ? () => '' : F[K], 5);
+      const maxSeg = Math.max(...top5.map(s => s.raw));
+      top5.forEach(s => { s.bar = (s.raw / maxSeg) * 100; });
+      const p = principal(K, M);
+      const maxIt = Math.max(...p.items.map(i => i[1]));
+      out.top5 = top5;
+      out.desgloseTitulo = K === 'diseno'
+        ? 'Qué pidió ' + p.name + ' para ocupar el ' + Fm(p.total) + ' de ' + mesLabel
+        : 'Qué pidió ' + p.name + ' para llegar a ' + F[K](p.total);
+      out.desglosePrincipal = p.items.slice().sort((a, b) => b[1] - a[1]).map(i => ({ name: i[0], val: Fm(i[1]), bar: (i[1] / maxIt) * 100, tip: i[0] + '|' + Fm(i[1]) + '|' + p.name + (K === 'diseno' ? ' · del total de ' + mesLabel : '') }));
+      out.filasCompleto = M.areas.slice().sort(desc).map(a => {
+        const mx = Math.max(...a.items.map(i => i[1]));
+        return { name: a.name,
+          resumen: K === 'diseno' ? Fm(a.total) + ' de la ocupación del mes' : F[K](a.total) + ' · ' + Math.round((a.total / M.total) * 100) + '%',
+          items: a.items.slice().sort((x, y) => y[1] - x[1]).map(i => ({ name: i[0], val: Fm(i[1]), bar: (i[1] / mx) * 100, tip: i[0] + '|' + Fm(i[1]) + '|' + a.name })) };
+      });
+      const pct = Math.round((p.total / M.total) * 100);
+      if (K === 'diseno') {
+        out.datoLabel = 'Principal demandante de ' + mesLabel;
+        out.datoValor = p.name;
+        out.datoNota = 'Ocupa el ' + Fm(p.total) + ' del total de ' + mesLabel + ', sin contar el trabajo interno de Branding';
+        out.totalMesTxt = 'Ocupación de ' + mesLabel + ' repartida entre ' + M.areas.length + ' áreas';
+      } else if (K === 'fotografia') {
+        out.datoLabel = 'Fotos necesarias en ' + mesLabel;
+        out.datoValor = this.fmt(M.total);
+        out.datoNota = 'Pedidas por ' + M.areas.length + ' áreas. ' + p.name + ' concentra el ' + pct + '%.';
+        out.totalMesTxt = F[K](M.total) + ' en ' + mesLabel + ' entre ' + M.areas.length + ' áreas';
+      } else {
+        out.datoLabel = 'Área que más gastó en ' + mesLabel;
+        out.datoValor = p.name;
+        out.datoNota = this.plata(p.total) + ' de ' + this.plata(M.total) + ' gastados en el mes (' + pct + '%)';
+        out.totalMesTxt = this.plata(M.total) + ' gastados en ' + mesLabel + ' entre ' + M.areas.length + ' áreas';
+      }
+    }
+
+    const eqF = D.equipos.find(e => e.key === 'fotografia');
+    const vsRaw = eqF.vs && eqF.vs[mes];
+    const vsMax = vsRaw ? Math.max(1, ...vsRaw.flatMap(r => [r[1], r[2]])) : 1;
+    const vsFilas = vsRaw ? vsRaw.map(r => ({
+      tipo: r[0], primera: this.fmt(r[1]) + ' fotos', femenino: this.fmt(r[2]) + ' fotos',
+      wP: (r[1] / vsMax) * 100, wF: (r[2] / vsMax) * 100, tipP: 'Primera · ' + r[0] + '|' + this.fmt(r[1]) + ' fotos', tipF: 'Femenino · ' + r[0] + '|' + this.fmt(r[2]) + ' fotos',
+      nota: r[2] === 0 ? 'Femenino sin registro en el mes' : 'Primera tiene ' + this.fmt(r[1] / r[2]).replace(/,0$/, '') + ' veces más fotos'
+    })) : [];
+
+    const concDiseno = () => {
+      const sr = series.diseno, i = sr.findIndex(m => m.key === mes);
+      if (i < 0) return [{ k: 'Sin registro', t: 'No hay datos de Diseño para ' + mesLabel + '.' }];
+      const Mx = sr[i];
+      const val = (m, n) => ((m.areas.find(a => a.name === n)?.total || 0) / m.total) * 100;
+      const otros = sr.filter((_, j) => j !== i);
+      const habitual = Mx.areas.filter(a => a.name !== 'BRANDING').map(a => {
+        const prom = otros.length ? otros.reduce((s, m) => s + val(m, a.name), 0) / otros.length : 0;
+        const v = (a.total / Mx.total) * 100;
+        return { name: a.name, v, prom, d: v - prom };
+      }).filter(c => c.d > 0).sort((a, b) => b.d - a.d).slice(0, 2);
+      const top3 = m => m.areas.filter(a => a.name !== 'BRANDING').slice().sort(desc).slice(0, 3).map(a => a.name);
+      let racha = { name: '', n: 0 };
+      top3(Mx).forEach(n => {
+        let c = 0;
+        for (let j = i; j >= 0 && top3(sr[j]).includes(n); j--) c++;
+        if (c > racha.n) racha = { name: n, n: c };
+      });
+      const nuevas = i > 0 ? Mx.areas.filter(a => !sr.slice(0, i).some(m => m.areas.some(x => x.name === a.name))) : [];
+      const t3 = Mx.areas.slice().sort(desc).slice(0, 3);
+      return [
+        { k: 'Mayor demanda de lo habitual en', t: habitual.length
+          ? habitual.map(c => c.name + ': ' + this.fmt(c.v) + '% de la ocupación, contra un promedio de ' + this.fmt(c.prom) + '%').join('. ') + '.'
+          : 'Ningún área superó su promedio en ' + mesLabel + '.' },
+        { k: 'Mayores pedidos consecutivos en', t: racha.n > 1
+          ? racha.name + ': ' + racha.n + ' meses seguidos entre las tres áreas que más piden.'
+          : racha.name + ' entra este mes entre las tres áreas que más piden.' },
+        nuevas.length
+          ? { k: 'Demanda nueva de', t: nuevas.map(a => a.name + ' (' + this.pctTxt(a.total, Mx.total) + ' de la ocupación)').join(', ') + ', que no habían pedido antes.' }
+          : { k: 'Demanda concentrada en', t: t3.map(a => a.name).join(', ') + ': el ' + Math.round((t3.reduce((s, a) => s + a.total, 0) / Mx.total) * 100) + '% de la ocupación del mes.' }
+      ];
+    };
+    const concProd = () => {
+      const sr = series.produccion, i = sr.findIndex(m => m.key === mes);
+      if (i < 0) return [{ k: 'Sin registro', t: 'No hay gastos de Producción cargados para ' + mesLabel + '. Hay registro de ' + sr.map(m => m.label).join(', ') + '.' }];
+      const Mx = sr[i];
+      let big = null;
+      Mx.areas.forEach(a => a.items.forEach(it => { if (!big || it[1] > big.v) big = { n: it[0], a: a.name, v: it[1] }; }));
+      const top3 = m => m.areas.slice().sort(desc).slice(0, 3).map(a => a.name);
+      const siempre = sr[0].areas.map(a => a.name).filter(n => sr.every(m => top3(m).includes(n)));
+      let tend;
+      if (siempre.length) tend = siempre.join(' y ') + (siempre.length > 1 ? ' siempre están' : ' siempre está') + ' entre las tres áreas que más gastan (' + sr[0].label + ' a ' + sr[sr.length - 1].label + ').';
+      else {
+        const pres = sr[0].areas.map(a => a.name).filter(n => sr.every(m => m.areas.some(x => x.name === n)))
+          .map(n => ({ n, t: sr.reduce((s, m) => s + (m.areas.find(x => x.name === n)?.total || 0), 0) })).sort((a, b) => b.t - a.t);
+        tend = pres.length ? pres[0].n + ' gasta todos los meses: ' + this.plata(pres[0].t) + ' acumulados.' : 'Ningún área repite gasto todos los meses.';
+      }
+      const items = [
+        { k: 'Gasto importante fue', t: big.n + ' (' + big.a + '): ' + this.plata(big.v) + ', el ' + Math.round((big.v / Mx.total) * 100) + '% del gasto del mes.' },
+        { k: 'Tendencia', t: tend }
+      ];
+      if (i > 0) {
+        const d = Mx.total - sr[i - 1].total;
+        items.push({ k: 'Frente al mes anterior', t: 'El gasto ' + (d >= 0 ? 'subió' : 'bajó') + ' un ' + Math.abs(Math.round((d / sr[i - 1].total) * 100)) + '% respecto de ' + sr[i - 1].label + ' (' + this.plata(sr[i - 1].total) + ').' });
+      }
+      return items;
+    };
+    const concFoto = () => {
+      const Mx = series.fotografia.find(m => m.key === mes);
+      if (!Mx || !vsRaw) return [{ k: 'Sin registro', t: 'No hay datos de Fotografía para ' + mesLabel + '. Hay registro de ' + series.fotografia.map(m => m.label).join(', ') + '.' }];
+      const P = vsRaw.reduce((s, r) => s + r[1], 0), Fe = vsRaw.reduce((s, r) => s + r[2], 0);
+      const gap = vsRaw.slice().sort((a, b) => (b[1] - b[2]) - (a[1] - a[2]))[0];
+      const p = principal('fotografia', Mx);
+      return [
+        { k: 'Femenino y masculino', t: 'Primera ' + this.fmt(P) + ' fotos y Femenino ' + this.fmt(Fe) + '. Primera recibe ' + this.fmt(P / Fe) + ' veces más fotos.' },
+        { k: 'Mayor diferencia', t: gap[0] + ': ' + this.fmt(gap[1]) + ' fotos de Primera contra ' + this.fmt(gap[2]) + ' de Femenino.' },
+        { k: 'Área que más fotos pidió', t: p.name + ', con ' + this.fmt(p.total) + ' fotos (' + Math.round((p.total / Mx.total) * 100) + '% del mes).' }
+      ];
+    };
+    const conclusiones = [
+      { key: 'diseno', titulo: 'Diseño', items: concDiseno() },
+      { key: 'produccion', titulo: 'Producción', items: concProd() },
+      { key: 'fotografia', titulo: 'Fotografía', items: concFoto() }
+    ].map(c => ({ ...c, bc: c.key === K ? 'var(--color-naranja)' : 'rgba(15,26,58,0.14)', fg: c.key === K ? 'var(--color-naranja)' : 'var(--color-text)' }));
+
+    const Hs = series[K];
+    const pal = this._hist;
+    const col = i => pal[(pal.length - Hs.length + i + pal.length * 4) % pal.length];
+    const nombres = [...new Set(Hs.flatMap(m => m.areas.map(a => a.name)))];
+    const filas = nombres.map(n => {
+      const vals = Hs.map(m => m.areas.find(a => a.name === n)?.total || 0);
+      return { name: n, tot: vals.reduce((s, v) => s + v, 0), vals };
+    }).sort((a, b) => b.tot - a.tot);
+    const maxT = filas.length ? filas[0].tot : 1;
+    const maxM = Math.max(1, ...Hs.map(m => m.total));
+    const totH = Hs.reduce((s, m) => s + m.total, 0);
+    const t3h = filas.slice(0, 3);
+    const rango = Hs[0].label + (Hs.length > 1 ? ' a ' + Hs[Hs.length - 1].label : '');
+    const esD = K === 'diseno';
+    const filasD = esD ? nombres.map(n => {
+      const sh = Hs.map(m => ((m.areas.find(a => a.name === n)?.total || 0) / m.total) * 100);
+      return { name: n, sh, avg: sh.reduce((x, v) => x + v, 0) / Hs.length };
+    }).sort((a, b) => b.avg - a.avg) : [];
+    const maxAvg = filasD.length ? filasD[0].avg : 1;
+    const topMes = esD ? Hs.map(m => { const p = principal('diseno', m); return { name: p.name, pct: (p.total / m.total) * 100 }; }) : [];
+    const maxTop = esD ? Math.max(1, ...topMes.map(x => x.pct)) : 1;
+    const compPal = this._pal;
+    const compTop = filasD.slice(0, compPal.length).map(r => r.name);
+    const compLeyenda = esD ? [...compTop.map((n, i) => ({ label: n, color: compPal[i] })), { label: 'Otras áreas', color: '#2a2f45' }] : [];
+    const compMeses = esD ? Hs.map(m => {
+      const segs = compTop.map((n, i) => {
+        const v = ((m.areas.find(a => a.name === n)?.total || 0) / m.total) * 100;
+        return { w: v, color: compPal[i], fg: (i === 1 || i === 3) ? '#0a0d1f' : '#ffffff', txt: v >= 8 ? Math.round(v) + '%' : '', tip: n + '|' + this.fmt(v) + '%|de la actividad de ' + m.label };
+      });
+      const resto = Math.max(0, 100 - segs.reduce((x, g) => x + g.w, 0));
+      segs.push({ w: resto, color: '#2a2f45', fg: '#c9cfe0', txt: resto >= 8 ? Math.round(resto) + '%' : '', tip: 'Otras áreas|' + this.fmt(resto) + '%|de la actividad de ' + m.label });
+      return { label: m.label, segs: segs.filter(g => g.w > 0) };
+    }) : [];
+    const compacto = S.vista === 'mobile';
+    const fmtCol = v => (K === 'produccion' && compacto) ? '$\u00a0' + this.fmt(v / 1000).replace(/,0$/, '') + '\u00a0M' : F[K](v);
+
+    return {
+      L, vistas,
+      heroMes: esHist ? 'Histórico' : mesLabel,
+      heroSub: esHist ? rango + ' 2026' + (elegido ? ' · ' + areaLabel : '') : '2026 · Diseño, Fotografía y Producción',
+      chipsMes, modos, areaBtns, areaInfo,
+      infoTitulo: esHist ? 'Acumulado de las tres áreas' : 'Las tres áreas en ' + mesLabel,
+      sinSeleccion: !elegido, haySeleccion: !!elegido,
+      esMensual: !!elegido && !esHist, esHistorico: !!elegido && esHist,
+      hayMes: !!M, sinMes: !M,
+      vacioTxt: 'No hay registro de ' + areaLabel + ' para ' + mesLabel + '.',
+      mesesDisponibles: SER.map(m => ({ label: m.label, onClick: () => this.setState({ mes: m.key }) })),
+      ...out,
+      esFoto: K === 'fotografia' && !!vsRaw, vsFilas, vsNota: eqF.vsNota || '',
+      completo: S.completo,
+      completoBtn: S.completo ? 'Ocultar el desglose completo' : 'Ver el desglose completo de qué pidió cada área',
+      completoIcono: S.completo ? '−' : '+',
+      toggleCompleto: () => this.setState(s => ({ completo: !s.completo })),
+      heroSlots: [...universo.map(u => ({ id: 'portada-' + u.key, placeholder: 'Arrastrá acá la imagen de ' + u.label })),
+        { id: 'portada-historico', placeholder: 'Arrastrá acá la imagen del histórico' }]
+        .map(h => ({ ...h, display: h.id === (esHist ? 'portada-historico' : 'portada-' + mes) ? 'block' : 'none' })),
+      conclusionesTitulo: areaLabel + ': lo que dejó ' + mesLabel,
+      conclusionesArea: (conclusiones.find(c => c.key === K) || { items: [] }).items,
+      toggleHistorico: () => this.setState(s => ({ modo: s.modo === 'historico' ? 'mensual' : 'historico', histTodas: false })),
+      histToggleTxt: esHist ? 'Volver a ' + mesLabel : 'Ver histórico',
+      histBtnBg: esHist ? 'var(--color-azul)' : '#ffffff',
+      histBtnBc: esHist ? 'var(--color-azul)' : 'rgba(15,26,58,0.18)',
+      histBtnFg: esHist ? '#ffffff' : 'var(--color-azul)',
+      histTitulo: K === 'diseno' ? 'Diseño por áreas' : K === 'produccion' ? 'Producción por gastos' : 'Fotografía por áreas',
+      histSub: esD ? 'Ocupación promedio por área, ' + rango + ', entre ' + filas.length + ' áreas' : F[K](totH) + ' acumulados de ' + rango + ', entre ' + filas.length + ' áreas',
+      histMesesTitulo: 'Total por mes',
+      histDiseno: esD, histNoDiseno: !esD, compLeyenda, compMeses,
+      histPorLabel: K === 'produccion' ? 'Gasto por área, apilado por mes' : K === 'fotografia' ? 'Fotos por área, apiladas por mes' : 'Ocupación promedio por área (cada tramo es un mes)',
+      histMeses: Hs.map((m, i) => esD
+        ? ({ label: m.label, sub: topMes[i].name, val: this.fmt(topMes[i].pct) + '%', h: (topMes[i].pct / maxTop) * 100, color: col(i) })
+        : ({ label: m.label, sub: '', val: fmtCol(m.total), h: (m.total / maxM) * 100, color: col(i), tip: m.label + '|' + fmtCol(m.total) })),
+      histEje: [1, 0.5].map(f => ({ val: fmtCol(maxM * f), b: f * 100 })),
+      histLeyenda: Hs.map((m, i) => ({ label: m.label, color: col(i) })),
+      histFilas: esD
+        ? (S.histTodas ? filasD : filasD.slice(0, 10)).map(r => ({
+          name: r.name, total: this.fmt(r.avg) + '%',
+          segs: r.sh.map((v, i) => ({ w: ((v / Hs.length) / maxAvg) * 100, color: col(i), tip: r.name + '|' + this.fmt(v) + '%|de la actividad de ' + Hs[i].label })).filter(x => x.w > 0) }))
+        : (S.histTodas ? filas : filas.slice(0, 10)).map(r => ({
+          name: r.name, total: fmtCol(r.tot),
+          segs: r.vals.map((v, i) => ({ w: (v / maxT) * 100, color: col(i), tip: r.name + '|' + fmtCol(v) + '|' + Hs[i].label })).filter(x => x.w > 0) })),
+      histHayMas: filas.length > 10,
+      histBtn: S.histTodas ? 'Ver solo las 10 principales' : 'Ver las ' + filas.length + ' áreas',
+      toggleHist: () => this.setState(s => ({ histTodas: !s.histTodas })),
+      histNota: esD
+        ? filasD.slice(0, 3).map(r => r.name).join(', ') + ' ocupan en promedio el ' + this.fmt(filasD.slice(0, 3).reduce((x, r) => x + r.avg, 0)) + '% de cada mes.'
+        : Hs.length === 1
+        ? areaLabel + ' tiene registro de un solo mes (' + Hs[0].label + '). El histórico se completa a medida que se cargan meses nuevos.'
+        : t3h.map(r => r.name).join(', ') + ' concentran el ' + Math.round((t3h.reduce((s, r) => s + r.tot, 0) / totH) * 100) + '% del total acumulado.'
+    };
+  }
+}
+
+</script>
+</body>
+</html>
